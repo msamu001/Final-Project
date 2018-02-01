@@ -1,0 +1,7 @@
+import java.util.HashSet;
+
+public class Vertex {
+	private String label;
+	private double xPos, yPos; // The position of the vertex
+	private HashSet<Edge> edges; // Stores a set of all edges connected to this vertex
+}

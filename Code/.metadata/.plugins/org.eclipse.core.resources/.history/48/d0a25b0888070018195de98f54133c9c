@@ -1,0 +1,11 @@
+import java.util.HashSet;
+
+public class Vertex {
+	private String label;
+	private HashSet<Edge> edges; // Stores a set of all edges connected to this vertex
+	
+	public Vertex(String l) { // Constructor for no type input
+		label = l;
+		edges = new HashSet<Edge>();
+	}
+}
