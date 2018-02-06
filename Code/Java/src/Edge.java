@@ -48,7 +48,10 @@ public class Edge {
 		if(vertex1.equals(v)){
 			return vertex2;
 		}
-		return vertex1;
+		else if(vertex2.equals(v)){
+			return vertex1;
+		}
+		return null;
 	}
 	
 	public String toString() {
