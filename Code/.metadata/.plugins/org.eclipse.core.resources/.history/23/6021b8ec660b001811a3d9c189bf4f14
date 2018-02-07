@@ -1,38 +1,39 @@
 public class Edge {
-	private Vertex[] vertex;
+	private Vertex vertex1, vertex2;
 	private double weight;
 	
 	public Edge(Vertex v1, Vertex v2) {
+		vertex1 = v1;
+		vertex2 = v2;
 		weight = 0;
-		initialize(v1, v2);
+		// Adds this edge to both vertices
+		v1.add(this);
+		v2.add(this);
 	}
 	
 	public Edge(Vertex v1, Vertex v2, double w) {
+		vertex1 = v1;
+		vertex2 = v2;
 		weight = w;
-		initialize(v1, v2);
-	}
-	
-	// Adds this edge to both vertices
-	private void initialize(Vertex v1, Vertex v2){
-		vertex = new Vertex[]{v1,v2};
+		// Adds this edge to both vertices
 		v1.add(this);
 		v2.add(this);
 	}
 	
 	public void setVertex1(Vertex v1) {
-		vertex[0] = v1;
+		vertex1 = v1;
 	}
 	
 	public Vertex getVertex1() {
-		return vertex[0];
+		return vertex1;
 	}
 	
 	public void setVertex2(Vertex v2) {
-		vertex[1] = v2;
+		vertex2 = v2;
 	}
 	
 	public Vertex getVertex2() {
-		return vertex[1];
+		return vertex2;
 	}
 	
 	public double getWeight() {
@@ -44,18 +45,18 @@ public class Edge {
 	}
 	
 	public Vertex getOther(Vertex v) {
-		if(vertex[0].equals(v)){
-			return vertex[1];
+		if(vertex1.equals(v)){
+			return vertex2;
 		}
-		else if(vertex[1].equals(v)){
-			return vertex[0];
+		else if(vertex2.equals(v)){
+			return vertex1;
 		}
 		return null;
 	}
 	
 	public String toString() {
-		return ("Vertex 1: " + vertex[0].getLabel() + "   " +
-				"Vertex 2: " + vertex[1].getLabel() + "   " +
+		return ("Vertex 1: " + vertex1.getLabel() + "   " +
+				"Vertex 2: " + vertex2.getLabel() + "   " +
 				"Edge Weight: " + weight + " ");
 	}
 }

@@ -44,18 +44,18 @@ public class Edge {
 	}
 	
 	public Vertex getOther(Vertex v) {
-		if(vertex[0].equals(v)){
-			return vertex[1];
+		if(vertex1.equals(v)){
+			return vertex2;
 		}
-		else if(vertex[1].equals(v)){
-			return vertex[0];
+		else if(vertex2.equals(v)){
+			return vertex1;
 		}
 		return null;
 	}
 	
 	public String toString() {
-		return ("Vertex 1: " + vertex[0].getLabel() + "   " +
-				"Vertex 2: " + vertex[1].getLabel() + "   " +
+		return ("Vertex 1: " + vertex1.getLabel() + "   " +
+				"Vertex 2: " + vertex2.getLabel() + "   " +
 				"Edge Weight: " + weight + " ");
 	}
 }

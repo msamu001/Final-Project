@@ -54,8 +54,8 @@ public class Edge {
 	}
 	
 	public String toString() {
-		return ("Vertex 1: " + vertex[0].getLabel() + "   " +
-				"Vertex 2: " + vertex[1].getLabel() + "   " +
+		return ("Vertex 1: " + vertex1.getLabel() + "   " +
+				"Vertex 2: " + vertex2.getLabel() + "   " +
 				"Edge Weight: " + weight + " ");
 	}
 }
