@@ -11,7 +11,28 @@ public class Vertex {
 	}
 	
 	public void add(Edge e) {
-		edges.add(e);
+		Vertex check = e.getOther(this);
+		if(findEdge(check.getLabel()) == null) {
+			edges.add(e);
+		}
+		System.out.println();
+	}
+	
+	private Edge findEdge(String l) { // 
+		Iterator<Edge> edgeIt = edges.iterator();
+		Edge e = null;
+		while(edgeIt.hasNext()) {
+			Edge tEdge = edgeIt.next();
+			if(l.equals(tEdge.getVertex1().getLabel())) {
+				e = tEdge;
+				break;
+			}
+			if(l.equals(tEdge.getVertex2().getLabel())) {
+				e = tEdge;
+				break;
+			}
+		}
+		return e;
 	}
 	
 	public void remove(Edge e) { // Remove given edge
@@ -19,18 +40,11 @@ public class Vertex {
 	}
 	
 	public void remove(Vertex v) { // Removes the edge connecting to given vertex
-		edges.remove(findEdge(v));
+		edges.remove(findEdge(v.getLabel()));
 	}
 	
-	public Edge findEdge(Vertex vertex) { // 
-		Iterator<Edge> edgeIt = edges.iterator();
-		Edge e = null;
-		while(edgeIt.hasNext()) {
-			Edge tEdge = edgeIt.next();
-			if(vertex.equals(tEdge.getVertex1())) e = tEdge;
-			if(vertex.equals(tEdge.getVertex2())) e = tEdge;
-		}
-		return e;
+	public void remove(String l) { // Removes the edge connecting to given vertex
+		edges.remove(findEdge(l));
 	}
 	
 	public int degree() {

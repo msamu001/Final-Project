@@ -1,0 +1,31 @@
+import static org.junit.Assert.*;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+public class VertexTest {
+	Vertex vertex;
+	@Before
+	public void setUp() throws Exception {
+		vertex = new Vertex("test");
+	}
+
+	@Test
+	public void testDegree() {
+		// Check Hashset<Edges> has been initialized
+		Assert.assertNotEquals(null, vertex.getEdges());
+		
+		// Check no edges are initially connected
+		Assert.assertEquals(0, vertex.degree());
+		
+		// Check 
+		vertex.add(new Edge(vertex, new Vertex("test2")));
+	}
+	
+	public void testRemove() {
+		
+	}
+	
+	
+}

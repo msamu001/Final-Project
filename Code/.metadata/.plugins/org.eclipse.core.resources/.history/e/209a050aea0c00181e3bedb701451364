@@ -1,0 +1,23 @@
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+
+public class VertexTest {
+	Vertex vertex;
+	@Before
+	public void setUp() throws Exception {
+		vertex = new Vertex("test");
+	}
+
+	@Test
+	public void testAdd() {
+		vertex.add(new Edge(vertex,vertex));
+		Assert.(,);
+	}
+	
+	public void testRemove() {
+		
+	}
+	
+	
+}
