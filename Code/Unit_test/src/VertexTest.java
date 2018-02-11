@@ -6,6 +6,7 @@ import org.junit.Test;
 
 public class VertexTest {
 	Vertex vertex;
+	Edge tEdge;
 	@Before
 	public void setUp() throws Exception {
 		vertex = new Vertex("test");
@@ -20,7 +21,7 @@ public class VertexTest {
 		Assert.assertEquals(0, vertex.degree());
 		
 		// Check an edge can be added correctly
-		Edge tEdge = new Edge(vertex, new Vertex("test2"));
+		tEdge = new Edge(vertex, new Vertex("test2"));
 		Assert.assertEquals(1, vertex.degree());
 		
 		// Check no duplicates allowed using existing edge

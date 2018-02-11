@@ -15,7 +15,6 @@ public class Vertex {
 		if(findEdge(check.getLabel()) == null) {
 			edges.add(e);
 		}
-		System.out.println();
 	}
 	
 	private Edge findEdge(String l) { // 

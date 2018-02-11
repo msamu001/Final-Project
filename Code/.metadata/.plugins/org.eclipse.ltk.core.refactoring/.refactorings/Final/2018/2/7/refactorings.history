@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;EdgeWeightedGraph.java&apos; to &apos;EWG.java&apos;&#x0D;&#x0A;- Original project: &apos;Final&apos;&#x0D;&#x0A;- Original element: &apos;EdgeWeightedGraph.java&apos;&#x0D;&#x0A;- Renamed element: &apos;EWG.java&apos;" description="Rename compilation unit &apos;EdgeWeightedGraph.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src&lt;{EdgeWeightedGraph.java" name="EWG.java" references="false" stamp="1518369655430" version="1.0"/>
+</session>

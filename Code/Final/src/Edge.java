@@ -14,12 +14,14 @@ public class Edge {
 	
 	// Adds this edge to both vertices
 	private void initialize(Vertex v1, Vertex v2){
+		if(v1.getLabel().equals(v2.getLabel())) throw new IllegalArgumentException("Cannot connect a vertex to itself");
 		vertex = new Vertex[]{v1,v2};
 		v1.add(this);
 		v2.add(this);
 	}
 	
 	public void setVertex1(Vertex v1) {
+		if(vertex[1].getLabel().equals(v1.getLabel())) return;
 		vertex[0] = v1;
 	}
 	
@@ -28,6 +30,7 @@ public class Edge {
 	}
 	
 	public void setVertex2(Vertex v2) {
+		if(vertex[0].getLabel().equals(v2.getLabel())) return;
 		vertex[1] = v2;
 	}
 	
