@@ -10,7 +10,7 @@ public class Vertex {
 		edges = new HashSet<Edge>();
 	}
 	
-	private Edge findEdge(String l) { // 
+	public Edge findEdge(String l) { // 
 		Iterator<Edge> edgeIt = edges.iterator();
 		Edge e = null;
 		while(edgeIt.hasNext()) {

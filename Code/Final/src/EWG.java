@@ -1,4 +1,5 @@
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.TreeMap;
 
 public class EWG {
@@ -33,10 +34,13 @@ public class EWG {
 	}
 	
 	public Vertex getVertex(String label) { // Returns the vertex associated with input label
+		for(String l: vertices.keySet()) {
+			if(l.equals(label)) return vertices.get(l);
+		}
 		return null;
 	}
 	
-	public void addVertex(String label) { 
+	public void addVertex(String label) {
 		vertices.put(label, new Vertex(label));
 	}
 	
@@ -45,7 +49,17 @@ public class EWG {
 		vertices.put(label, v);
 	}
 	
+	public void removeVertex(String vLabel) {
+		removeVertex(getVertex(vLabel));		
+	}
+	
 	public void removeVertex(Vertex v) {
+		vertices.remove(v.getLabel());
+		Iterator<Edge> it = v.getEdges().iterator();
+		while(it.hasNext()) {
+			Edge edgeR = it.next();
+			removeEdge(v, edgeR.getOther(v));
+		}
 	}
 	
 	public HashSet<Edge> getEdges() {
@@ -53,7 +67,24 @@ public class EWG {
 	}
 	
 	public void addEdge(Edge e) {
+		Vertex v1 = e.getVertex1();
+		Vertex v2 = e.getVertex2();
 		
+		if(chkVertex(v1.getLabel())) { // Connect edge to existing vertex
+			Vertex tVertex = vertices.get(v1.getLabel());
+			e.setVertex1(tVertex);
+			tVertex.add(e);
+			vertices.put(v1.getLabel(), tVertex);
+		} else addVertex(v1);
+		
+		if(chkVertex(v2.getLabel())) { // Connect edge to existing vertex		
+			Vertex tVertex = vertices.get(v2.getLabel());
+			e.setVertex2(tVertex);
+			tVertex.add(e);
+			vertices.put(v2.getLabel(), tVertex);
+		} else addVertex(v2);
+		
+		edges.add(e);
 	}
 	
 	public void addEdge(String vLabel1, String vLabel2, double w) { // Attaches an edge to each of the vertices via the labels
@@ -73,15 +104,23 @@ public class EWG {
 	}
 	
 	public void removeEdge(String vLabel1, String vLabel2) {
-		
+		Vertex v1 = vertices.get(vLabel1);
+		Vertex v2 = vertices.get(vLabel2);
+		edges.remove(v1.findEdge(vLabel2));
+		v1.remove(v2);
+		v2.remove(v1);
 	}
 	
 	public void removeEdge(Vertex v1, Vertex v2) {
-		
+		edges.remove(v1.findEdge(v2.getLabel()));
+		v1.remove(v2);
+		v2.remove(v1);
 	}
 	
 	public void removeEdge(Edge e) {
-		
+		edges.remove(e);
+		e.getVertex1().remove(e);
+		e.getVertex2().remove(e);
 	}
 	
 	public int degree(String label) {
@@ -94,5 +133,10 @@ public class EWG {
 	
 	public String toString() {
 		return null;
+	}
+	
+	private boolean chkVertex(String label) {
+		if(vertices.containsKey(label)) return true;
+		return false;
 	}
 }
