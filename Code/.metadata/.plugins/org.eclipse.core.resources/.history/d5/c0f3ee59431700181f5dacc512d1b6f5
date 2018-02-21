@@ -105,13 +105,17 @@ public class EWG {
 	
 	public void removeEdge(String vLabel1, String vLabel2) {
 		Vertex v1 = vertices.get(vLabel1);
+		Vertex v2 = vertices.get(vLabel2);
 		Edge e = v1.findEdge(vLabel2);
-		removeEdge(e);
+		edges.remove(e);
+		v1.remove(e);
+		v2.remove(e);
 	}
 	
 	public void removeEdge(Vertex v1, Vertex v2) {
-		Edge e = v1.findEdge(v2.getLabel());
-		removeEdge(e);
+		edges.remove(v1.findEdge(v2.getLabel()));
+		v1.remove(v2);
+		v2.remove(v1);
 	}
 	
 	public void removeEdge(Edge e) {
