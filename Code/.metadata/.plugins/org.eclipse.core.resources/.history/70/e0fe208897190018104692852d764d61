@@ -7,7 +7,6 @@ import org.junit.Test;
 public class EWG_Test {
 	EWG graph;
 	Edge edge;
-	Vertex vertex;
 	int countV;
 	@Before
 	public void setUp() throws Exception {
@@ -39,15 +38,16 @@ public class EWG_Test {
 		Assert.assertEquals(1, graph.degree("b"));
 		
 		// Check traversal is possible
-		edge = graph.getVertex("a").findEdge("b");
-		Assert.assertNotEquals(null, edge);
-		vertex = edge.getOther(graph.getVertex("a"));
-		Assert.assertEquals(graph.getVertex("b"), vertex);
+		
 		
 		// Check graph can be deconstructed
+		edge = graph.getVertex("a").findEdge("b");
+		Assert.assertNotEquals(null, edge);
 		graph.removeVertex("b");
 		Assert.assertEquals(0, graph.degree("a"));
 		Assert.assertEquals(null, graph.getVertex("b"));
+		System.out.println(edge.toString());
+		Assert.assertEquals(null, edge);
 		
 		// Check edge 
 		graph = new EWG();

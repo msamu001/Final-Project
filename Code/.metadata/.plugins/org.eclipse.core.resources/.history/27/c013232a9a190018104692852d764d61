@@ -119,7 +119,6 @@ public class EWG {
 		edges.remove(e);
 		e.getVertex1().remove(e);
 		e.getVertex2().remove(e);
-		e = null;
 	}
 	
 	public int degree(String label) {

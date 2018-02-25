@@ -51,7 +51,7 @@ public class Edge {
 		if(vertex[0].equals(v)){
 			temp = vertex[1];
 		}
-		else if(vertex[1].equals(v)) {
+		else if(vertex[1].equals(v)){
 			temp = vertex[0];
 		}
 		return temp;

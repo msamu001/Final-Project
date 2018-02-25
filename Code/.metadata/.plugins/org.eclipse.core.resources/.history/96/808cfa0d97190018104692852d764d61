@@ -60,7 +60,6 @@ public class EWG {
 			Edge edgeR = it.next();
 			removeEdge(v, edgeR.getOther(v));
 		}
-		v = null;
 	}
 	
 	public HashSet<Edge> getEdges() {
@@ -115,7 +114,7 @@ public class EWG {
 		removeEdge(e);
 	}
 	
-	private void removeEdge(Edge e) {
+	public void removeEdge(Edge e) {
 		edges.remove(e);
 		e.getVertex1().remove(e);
 		e.getVertex2().remove(e);
