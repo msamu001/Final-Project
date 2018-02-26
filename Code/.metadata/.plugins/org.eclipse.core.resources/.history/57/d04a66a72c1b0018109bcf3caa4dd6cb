@@ -1,0 +1,30 @@
+public class Agent {
+	private boolean status;
+	private EWG hypo;
+	private double fitness;
+	
+	public Agent(EWG h) {
+		status = false;
+		hypo = h;
+	}
+	
+	public void setStatus(boolean s) {
+		status = s;
+	}
+	
+	public boolean getStatus() {
+		return status;
+	}
+	
+	public void setHypo(EWG h) {
+		hypo = h;
+	}
+	
+	public EWG getHypo() {
+		return hypo;
+	}
+	
+	private EWG genHypo(EWG g) {
+		return null;
+	}
+}
