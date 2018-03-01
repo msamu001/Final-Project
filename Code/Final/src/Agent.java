@@ -1,3 +1,7 @@
+import java.util.Random;
+import java.util.HashSet;
+import java.util.Iterator;
+
 public class Agent {
 	private boolean status;
 	private EWG hypo;
@@ -39,6 +43,24 @@ public class Agent {
 	}
 	
 	private EWG genHypo(EWG g) {
-		return null;
+		Random rand = new Random();
+		EWG hypo = new EWG(g);
+		HashSet<Edge> edges = hypo.getEdges();	// List of all edges
+		hypo.removeAllEdges();
+		
+		while(edges.size() > 0) {
+			// Selects random edge
+			int rIndex = rand.nextInt(edges.size());
+			Iterator<Edge> edgeIt = edges.iterator();
+			for(int i = 0; i < rIndex; i++)	edgeIt.next();
+			Edge rEdge = edgeIt.next();
+			
+			edges.remove(rEdge);
+			hypo.addEdge(rEdge);
+			DFS checkG = new DFS(hypo, rEdge.getVertex1());
+			if(checkG.hasLoop()) hypo.removeEdge(rEdge);
+			if(checkG.isSpanTree()) return hypo;
+		}
+		return hypo;
 	}
 }

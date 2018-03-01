@@ -115,11 +115,16 @@ public class EWG {
 		removeEdge(e);
 	}
 	
-	private void removeEdge(Edge e) {
+	public void removeEdge(Edge e) {
 		edges.remove(e);
 		e.getVertex1().remove(e);
 		e.getVertex2().remove(e);
 		e = null;
+	}
+	
+	public void removeAllEdges() {
+		for(Vertex v: vertices.values()) v.removeAll();
+		edges = new HashSet<Edge>();			
 	}
 	
 	public int degree(String label) {

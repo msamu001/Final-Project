@@ -46,6 +46,10 @@ public class Vertex {
 		edges.remove(findEdge(l));
 	}
 	
+	public void removeAll() { // Removes all edges
+		edges = new HashSet<Edge>();
+	}
+	
 	public int degree() {
 		return edges.size();
 	}
