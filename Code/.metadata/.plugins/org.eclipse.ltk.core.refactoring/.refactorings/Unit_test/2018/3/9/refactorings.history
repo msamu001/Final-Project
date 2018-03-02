@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;DFS_test&apos; to &apos;DFS_Test&apos;&#x0D;&#x0A;- Original project: &apos;Unit_test&apos;&#x0D;&#x0A;- Original element: &apos;DFS_test&apos;&#x0D;&#x0A;- Renamed element: &apos;DFS_Test&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;DFS_test&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;{DFS_test.java[DFS_test" matchStrategy="1" name="DFS_Test" qualified="false" references="true" similarDeclarations="false" stamp="1519940107627" textual="false" version="1.0"/>
+</session>
