@@ -3,23 +3,23 @@ import java.util.LinkedList;
 import java.util.Iterator;
 
 public class DFS {
-	boolean loop;
+	boolean cycle;
 	boolean spanTree;
 	
 	public DFS(EWG graph, Vertex start) {
-		loop = false;
+		cycle = false;
 		spanTree = false;
 		search(graph, start);
 	}
 	
 	public DFS(EWG graph, String start) {
-		loop = false;
+		cycle = false;
 		spanTree = false;
 		search(graph, graph.getVertex(start));
 	}
 	
-	public boolean hasLoop() {
-		return loop;
+	public boolean hasCycle() {
+		return cycle;
 	}
 	
 	public boolean isSpanTree() {
@@ -27,7 +27,7 @@ public class DFS {
 	}
 	
 	public String toString() {
-		return 	"Loop: " + loop + "\n" +
+		return 	"Loop: " + cycle + "\n" +
 				"Spanning Tree: " + spanTree;
 	}
 	
@@ -41,6 +41,7 @@ public class DFS {
 	
 	private void search(EWG g, HashSet<Vertex> visited, HashSet<Edge> used, LinkedList<Vertex> frontier) {
 		if(frontier.size() == 0) {
+			if(g.getVertices().size() == 1) return;
 			if(visited.size() == g.getVertices().size()) spanTree = true;
 			return;
 		}
@@ -55,7 +56,7 @@ public class DFS {
 			Edge tEdge = edgeIt.next();
 			if(!used.contains(tEdge)) {
 				if(frontier.contains(tEdge.getOther(v))) {
-					loop = true;
+					cycle = true;
 					return;
 				}
 				frontier.add(tEdge.getOther(v));

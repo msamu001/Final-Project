@@ -1,0 +1,25 @@
+import static org.junit.Assert.*;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+public class DFS_Test {
+	DFS dfs;
+	EWG graph, graph2, graph3;
+	@Before
+	public void setUp() throws Exception {
+		graph = new EWG();
+		graph2 = new EWG();
+		graph3 = new EWG();
+		graph.addVertex(new Vertex("a"));
+		graph.addVertex(new Vertex("b"));
+		graph2.
+	}
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}

@@ -12,8 +12,9 @@ public class Agent_Test {
 	@Before
 	public void setUp() throws Exception {
 		graph = new EWG();
-		graph.addEdge(new Edge(new Vertex("a"), new Vertex("b")));
-		graph.addEdge(new Edge(new Vertex("c"), new Vertex("b")));
+		graph.addEdge(new Edge(new Vertex("a"), new Vertex("b"), 1));
+		graph.addEdge(new Edge(new Vertex("c"), new Vertex("b"), 1));
+		graph.addEdge(new Edge(new Vertex("a"), new Vertex("c"), 2));
 		agent = new Agent(graph);
 		dfs = new DFS(graph, "a");
 		changed = false;
@@ -24,17 +25,17 @@ public class Agent_Test {
 		// Check status is set to false by default
 		Assert.assertEquals(false, agent.getStatus());
 		
-		// Check hypothesis is a minimum spanning tree
+		// Check hypothesis is a spanning tree
 		Assert.assertEquals(3, agent.getHypo().getVertices().size());
 		Assert.assertEquals(2, agent.getHypo().getEdges().size());
 		Assert.assertEquals(true, dfs.isSpanTree());
-		Assert.assertEquals(false, dfs.hasLoop());
+		Assert.assertEquals(false, dfs.hasCycle());
 		
 		// Check hypothesis is random
 		hypo = agent.getHypo();
 		for(int i = 0; i < 50; i++) {
 			agent = new Agent(graph);
-			if(!hypo.equals(agent.getHypo())){
+			if(hypo.weight() != agent.getHypo().weight()){
 				changed = true;
 				break;
 			}

@@ -58,7 +58,7 @@ public class Agent {
 			edges.remove(rEdge);
 			hypo.addEdge(rEdge);
 			DFS checkG = new DFS(hypo, rEdge.getVertex1());
-			if(checkG.hasLoop()) hypo.removeEdge(rEdge);
+			if(checkG.hasCycle()) hypo.removeEdge(rEdge);
 			if(checkG.isSpanTree()) return hypo;
 		}
 		return hypo;

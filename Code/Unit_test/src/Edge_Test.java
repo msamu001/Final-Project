@@ -10,11 +10,6 @@ public class Edge_Test {
 	@Before
 	public void setUp() throws Exception {
 		edge = new Edge(new Vertex("test"), new Vertex("test2"));
-		try{
-			edge2 = new Edge(new Vertex("test"), new Vertex("test"));
-		} catch (Exception e){
-			error = e.toString();
-		}
 	}
 
 	@Test
@@ -24,6 +19,11 @@ public class Edge_Test {
 		Assert.assertNotEquals(null, edge.getVertex2());
 		
 		// Check a new edge will not create a self-looping vertex
+		try{
+			edge2 = new Edge(new Vertex("test"), new Vertex("test"));
+		} catch (Exception e){
+			error = e.toString();
+		}
 		Assert.assertEquals("java.lang.IllegalArgumentException: Cannot connect a vertex to itself", error);
 		Assert.assertEquals(null, edge2);
 		
