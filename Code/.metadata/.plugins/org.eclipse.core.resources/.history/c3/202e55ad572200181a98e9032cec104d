@@ -6,14 +6,14 @@ public class SDS {
 	private double actiRate;
 	private Random rand;
 	
-	public SDS(EWG g, int agentNum, double activation, int iteration) {
+	public SDS(EWG g, int agentNum, double activation, int iter) {
 		graph = g;
 		agent = new Agent[agentNum];
 		actiRate = activation * 0.01;
 		rand = new Random();
 		
 		init();
-		for(int i = 0; i < iteration; i++) {
+		for(int i = 0; i < iter; i++) {
 			test();
 			diffuse();
 		}
