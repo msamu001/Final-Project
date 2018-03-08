@@ -9,6 +9,7 @@ public class EWG_Test {
 	Edge edge;
 	Vertex vertex;
 	int countV;
+	String error;
 	@Before
 	public void setUp() throws Exception {
 		graph = new EWG();
@@ -38,6 +39,15 @@ public class EWG_Test {
 		Assert.assertEquals(1, graph.degree("a"));
 		Assert.assertEquals(1, graph.degree("b"));
 		
+		// Check graph does not allow duplicate connections
+		graph.addEdge("a","b");
+		Assert.assertEquals(1, graph.degree("a"));
+		Assert.assertEquals(1, graph.degree("b"));
+		graph.addEdge(new Edge(new Vertex("a"), new Vertex("b")));
+		Assert.assertEquals(1, graph.degree("a"));
+		Assert.assertEquals(1, graph.degree("b"));
+		Assert.assertEquals(2, graph.getVertices().size());
+		
 		// Check traversal is possible
 		edge = graph.getVertex("a").findEdge("b");
 		Assert.assertNotEquals(null, edge);
@@ -49,12 +59,20 @@ public class EWG_Test {
 		Assert.assertEquals(0, graph.degree("a"));
 		Assert.assertEquals(null, graph.getVertex("b"));
 		
-		// Check edge 
+		// Check edge cannot be created without vertices
 		graph = new EWG();
+
+		try{
+			graph.addEdge("a", "b");
+		} catch (Exception e){
+			error = e.toString();
+		}
+		Assert.assertEquals("java.lang.NullPointerException", error);
+		
 		Assert.assertEquals(0, graph.getVertices().size());
 		graph.addEdge(new Edge(new Vertex("c"), new Vertex("d")));
 		Assert.assertNotEquals(null, graph.getVertex("c"));
 		Assert.assertNotEquals(null, graph.getVertex("d"));
-		Assert.assertEquals(2, graph.getVertices().size());		
+		Assert.assertEquals(2, graph.getVertices().size());
 	}
 }

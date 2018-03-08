@@ -43,9 +43,11 @@ public class EWG_Test {
 		graph.addEdge("a","b");
 		Assert.assertEquals(1, graph.degree("a"));
 		Assert.assertEquals(1, graph.degree("b"));
+		Assert.assertEquals(2, graph.getVertices().size());
 		graph.addEdge(new Edge(new Vertex("a"), new Vertex("b")));
 		Assert.assertEquals(1, graph.degree("a"));
 		Assert.assertEquals(1, graph.degree("b"));
+		Assert.assertEquals(2, graph.getVertices().size());
 		
 		// Check traversal is possible
 		edge = graph.getVertex("a").findEdge("b");
