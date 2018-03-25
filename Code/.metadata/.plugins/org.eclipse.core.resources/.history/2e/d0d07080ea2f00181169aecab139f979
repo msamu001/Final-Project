@@ -7,7 +7,6 @@ import org.junit.Test;
 public class SDS_Test {
 	SDS sds;
 	EWG graph;
-	Agent[] agents;
 	@Before
 	public void setUp() throws Exception {
 		graph = new EWG();
@@ -16,15 +15,11 @@ public class SDS_Test {
 		graph.addEdge(new Edge(new Vertex("a"), new Vertex("c"), 3));
 		
 		sds = new SDS(graph, 10, 30, 1);
-		agents = sds.getAgents();
 	}
 
 	@Test
 	public void test() {
-		// Check each agent has a hypothesis
-		for(int i = 0; i < agents.length; i++) {
-			Assert.assertNotEquals(null, agents[i].getHypo());
-		}
+		fail("Not yet implemented");
 	}
 
 }

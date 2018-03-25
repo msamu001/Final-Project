@@ -35,12 +35,8 @@ public class SDS {
 		actiRate = ar;
 	}
 	
-	public double getRate() {
+	public double getRate(){
 		return actiRate;
-	}
-	
-	public void setGraph(EWG g) {
-		graph = g;
 	}
 	
 	public EWG getGraph() {

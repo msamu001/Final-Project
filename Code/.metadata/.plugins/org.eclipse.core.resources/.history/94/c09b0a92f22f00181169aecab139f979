@@ -23,34 +23,6 @@ public class SDS {
 		}
 	}
 	
-	public void setAgents(Agent[] a) {
-		agent = a;
-	}
-	
-	public Agent[] getAgents() {
-		return agent;
-	}
-	
-	public void setRate(double ar) {
-		actiRate = ar;
-	}
-	
-	public double getRate() {
-		return actiRate;
-	}
-	
-	public void setGraph(EWG g) {
-		graph = g;
-	}
-	
-	public EWG getGraph() {
-		return graph;
-	}
-	
-	public int getIt() {
-		return it;
-	}
-	
 	private void init() {
 		
 	}
@@ -61,5 +33,9 @@ public class SDS {
 	
 	private void diffuse() {
 		
+	}
+	
+	public Agent[] getAgents(){
+		return agent;
 	}	
 }

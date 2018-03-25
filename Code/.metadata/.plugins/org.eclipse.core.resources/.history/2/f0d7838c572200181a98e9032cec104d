@@ -1,8 +1,0 @@
-import java.util.Random;
-
-public class SDS {
-	private EWG graph;
-	private Agent[] agent;
-	private double actiRate;
-	private Random rand;
-}

@@ -1,0 +1,25 @@
+import static org.junit.Assert.*;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+public class SDS_Test {
+	SDS test;
+	EWG graph;
+	@Before
+	public void setUp() throws Exception {
+		graph = new EWG();
+		graph.addEdge(new Edge(new Vertex("a"), new Vertex("b")));
+		graph.addEdge(new Edge(new Vertex("c"), new Vertex("b")));
+		graph.addEdge(new Edge(new Vertex("a"), new Vertex("c")));
+		
+		test = new SDS(graph, 10, 30, 1);
+	}
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}
