@@ -23,28 +23,22 @@ public class SDS_Test {
 
 	@Test
 	public void test() {
-		// Check agents have been generated and each agent has a hypothesis
+		// Check agent array is full and every agent has a hypothesis
 		for(int i = 0; i < agents.length; i++) {
-			Agent a = agents[i];
-			Assert.assertNotEquals(null, a);
-			Assert.assertNotEquals(null, a.getHypo());
+			Assert.assertNotEquals(null, agents[i]);
+			Assert.assertNotEquals(null, agents[i].getHypo());
 		}
 		
-		// Check agent's fitness has been calculated
+		// Check agents fitness has been calculated and that the total is 100
 		sds.run();
 		for(int i = 0; i < agents.length; i++) {
 			Agent a = agents[i];
 			Assert.assertNotEquals(0, a.getFitness());
 			sum += a.getFitness();
-			
-			// Check agent has the correct status (active or inactive)
 			if(sum < sds.getRate()) {
 				Assert.assertEquals(true, a.getStatus());
-			} else { 
-				Assert.assertEquals(false, a.getStatus());
 			}
 		}
-		// Checks the total fitness of all agents is 100
 		Assert.assertEquals(100, sum);
 	}
 }
