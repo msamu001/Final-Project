@@ -39,9 +39,9 @@ public class SDS_Test {
 			
 			// Check agent has the correct status (active or inactive)
 			if(sum < sds.getRate()) {
-				System.out.println(a.getStatus() + " " + i);
+				System.out.print(a.getStatus());
 				Assert.assertEquals(true, a.getStatus());
-			} else {
+			} else { 
 				Assert.assertEquals(false, a.getStatus());
 			}
 		}

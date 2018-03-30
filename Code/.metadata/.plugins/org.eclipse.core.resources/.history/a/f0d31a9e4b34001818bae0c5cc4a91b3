@@ -79,12 +79,14 @@ public class SDS {
 			
 		// Sorts agents in descending order
 		quicksort(agent, 0, agent.length-1);
+//		for(Agent a: agent) System.out.println(a.toString());
 			
 		// Activate the top X agents when X is actiRate
 		for(int i = 0; i < agent.length; i++) {
 			sum += agent[i].getFitness();
 			if(i == 0) {
 				agent[i].setStatus(true);
+				best[i] = agent[i];
 			}
 			else if(sum < actiRate) agent[i].setStatus(true);
 			else agent[i].setStatus(false);

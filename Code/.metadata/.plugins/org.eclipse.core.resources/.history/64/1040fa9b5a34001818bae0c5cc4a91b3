@@ -41,7 +41,7 @@ public class SDS_Test {
 			if(sum < sds.getRate()) {
 				System.out.println(a.getStatus() + " " + i);
 				Assert.assertEquals(true, a.getStatus());
-			} else {
+			} else { 
 				Assert.assertEquals(false, a.getStatus());
 			}
 		}
