@@ -37,5 +37,8 @@ public class SDS_Test {
 			Assert.assertNotEquals(0, a.getFitness());
 			sum += a.getFitness();
 		}
+		
+		// Checks the total fitness of all agents is 100%
+		Assert.assertEquals(1.0, sum);
 	}
 }
