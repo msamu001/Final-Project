@@ -6,7 +6,6 @@ public class SDS {
 	private double actiRate;
 	private int it;
 	private Random rand;
-	private Agent best, worst;
 	
 	public SDS(EWG g, int agentNum, double activation, int iteration) {
 		graph = g;
@@ -50,14 +49,6 @@ public class SDS {
 	
 	public int getIt() {
 		return it;
-	}
-	
-	public Agent getBest() {
-		return best;
-	}
-	
-	public Agent getWorst() {
-		return worst;
 	}
 	
 	private void init() {
