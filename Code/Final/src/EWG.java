@@ -21,11 +21,11 @@ public class EWG {
 		vertices = new TreeMap<String, Vertex>(g.getVertices());
 	}
 	
-	public int size() { // Returns the number of Vertices in graph
+	public int order() { // Returns the number of Vertices in graph
 		return vertices.size();
 	}
 	
-	public int edgeNum() { // Returns the number of edges in the graph
+	public int size() { // Returns the number of edges in the graph
 		return edges.size();
 	}
 	
