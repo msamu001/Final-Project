@@ -7,9 +7,9 @@ public class Agent {
 	private EWG hypo;
 	private double fitness;
 	
-	public Agent(EWG h) {
+	public Agent(EWG hypothesis) {
 		status = false;
-		hypo = genHypo(h);
+		hypo = genHypo(hypothesis);
 	}
 	
 	public void setStatus(boolean s) {
