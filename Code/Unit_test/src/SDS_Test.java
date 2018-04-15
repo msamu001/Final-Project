@@ -7,7 +7,6 @@ import org.junit.Test;
 public class SDS_Test {
 	SDS sds;
 	EWG graph;
-	double sum;
 	Agent[] agents;
 	@Before
 	public void setUp() throws Exception {
@@ -18,7 +17,6 @@ public class SDS_Test {
 		
 		sds = new SDS(graph, 10, 30, 1);
 		agents = sds.getAgents();
-		sum = 0;
 	}
 
 	@Test
@@ -35,7 +33,7 @@ public class SDS_Test {
 		for(int i = 0; i < agents.length; i++) {
 			Agent a = agents[i];
 			Assert.assertNotEquals(0, a.getFitness());
-			sum += a.getFitness();
+			Assert.assertNotEquals(a.getHypo().weight(), a.getFitness());
 		}
 	}
 }

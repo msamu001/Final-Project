@@ -6,7 +6,7 @@ public class SDS {
 	private double actiRate;
 	private int it;
 	private Random rand;
-	private double[] best, worst, median, mean;
+	private double[][] results; // best, worst, mean, median
 	
 	public SDS(EWG g, int agentNum, double activation, int iteration) {
 		graph = g;
@@ -14,10 +14,7 @@ public class SDS {
 		actiRate = activation * 0.01;
 		it = iteration;
 		rand = new Random();
-		best = new double[iteration];
-		worst = new double[iteration];
-		median = new double[iteration];
-		mean = new double[iteration];
+		results = new double[4][iteration];
 		init();
 	}
 	
@@ -39,7 +36,7 @@ public class SDS {
 				break;
 			}
 			diffuse();
-			results(i);
+			calcResults(i);
 		}
 	}
 	
@@ -72,11 +69,23 @@ public class SDS {
 	}
 	
 	public double[] getBest() {
-		return best;
+		return results[0];
 	}
 	
 	public double[] getWorst() {
-		return worst;
+		return results[1];
+	}
+	
+	public double[] getMean() {
+		return results[2];
+	}
+	
+	public double[] getMedian() {
+		return results[3];
+	}
+	
+	public double[][] getResults() {
+		return results;
 	}
 	
 	private void init() {
@@ -107,19 +116,38 @@ public class SDS {
 			fitness /= sumFit;
 			agent[i].setFitness(fitness);
 		}
-			
-		// Sorts agents in descending order
-		quicksort(agent, 0, agent.length-1);
 		
-		
-		if(roulette) { // Agents are activated by a roulette
+		// Agents are activated by roulette selection
+		if(roulette) {
+			while(sum < actiRate) {
+				int rNum = rand.nextInt(100);
+				int iSum = 0;
+				
+				// Locates agent based by the random number
+				for(int i = 0; i < agent.length; i++) {
+					iSum += agent[i].getFitness(); // creates roulette
+					if(iSum >= rNum) {
+						if(agent[i].getStatus()) { // if agent is active spin roulette again
+							break;
+						} else {
+							agent[i].setStatus(true);
+							sum += agent[i].getFitness();
+							break;
+						}
+					}
+				}
+			}
+		} else {
+			// Sorts agents in descending order
+			quicksort(agent, 0, agent.length-1);
 			
-		}
-		for(int i = 0; i < agent.length; i++) { // Activate the top X agents when X is actiRate
-			sum += agent[i].getFitness();
-			if(i == 0) agent[i].setStatus(true);
-			else if(sum < actiRate) agent[i].setStatus(true);
-			else agent[i].setStatus(false);
+			// Activate the top X agents when X is actiRate
+			for(int i = 0; i < agent.length; i++) {
+				sum += agent[i].getFitness();
+				if(i == 0) agent[i].setStatus(true);
+				else if(sum < actiRate) agent[i].setStatus(true);
+				else agent[i].setStatus(false);
+			}
 		}
 	}
 	
@@ -143,38 +171,48 @@ public class SDS {
 		}
 	}
 	
-	private void results(int i) {
-		results(i, false);
+	private void calcResults(int i) {
+		calcResults(i, false);
 	}
 	
-	private void results(int i, boolean weight) {
+	private void calcResults(int i, boolean weight) {
 		double sum = 0;
 		
 		if(weight) { // Fitness = Weight
-			quicksort(agent, agent.length-1, 0);
-			best[i] = agent[0].getFitness();
-			worst[i] = agent[-1].getFitness();
+			quicksort(agent, agent.length-1, 0); // sorts in acending order
+			
+			results[0][i] = agent[0].getFitness(); // best
+			results[1][i] = agent[agent.length-1].getFitness(); // worst
+			
+			// mean
+			for(Agent a: agent) sum += a.getFitness();
+			results[2][i] = sum/agent.length;
+			sum = 0;
+			
+			// median
 			if(agent.length%2 == 0) {
 				sum = agent[agent.length/2].getFitness();
 				sum += agent[agent.length/2 - 1].getFitness();
-				median[i] = sum/2;
-				sum = 0;
-			} else median[i] = agent[agent.length/2].getFitness();
-			for(Agent a: agent) sum += a.getFitness();
-			mean[i] = sum/agent.length;
-		}
-		else { // Fitness is calculated
-			quicksort(agent, 0, agent.length-1);			
-			best[i] = agent[0].getHypo().weight();
-			worst[i] = agent[-1].getHypo().weight();
+				results[2][i] = sum/2;
+			} else results[3][i] = agent[agent.length/2].getFitness();
+			
+		} else { // Fitness is calculated
+			quicksort(agent, 0, agent.length-1); // sorts in descending order
+			
+			results[0][i] = agent[0].getHypo().weight(); // best
+			results[1][i] = agent[agent.length-1].getHypo().weight(); // worst
+			
+			// mean
+			for(Agent a: agent) sum += a.getHypo().weight();
+			results[2][i] = sum/agent.length;
+			sum = 0;
+			
+			// median
 			if(agent.length%2 == 0) {
 				sum = agent[agent.length/2].getHypo().weight();
 				sum += agent[agent.length/2 - 1].getHypo().weight();
-				median[i] = sum/2;
-				sum = 0;
-			} else median[i] = agent[agent.length/2].getHypo().weight();
-			for(Agent a: agent) sum += a.getHypo().weight();
-			mean[i] = sum/agent.length;
+				results[3][i] = agent[agent.length/2].getHypo().weight();
+			} else results[3][i] = agent[agent.length/2].getHypo().weight();
 		}
 	}
 	
@@ -188,7 +226,7 @@ public class SDS {
 	}
 	
 	private static int partition(Agent[] A, int lo, int hi) {
-		double pivot = A[lo + (hi - lo)/2 + 1].getFitness(); // Middle index
+		double pivot = A[lo + (hi - lo)/2].getFitness(); // Middle index
 		int i = lo;
 		int j = hi;
 		while(i <= j) {

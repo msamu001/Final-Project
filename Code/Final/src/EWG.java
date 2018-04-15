@@ -11,7 +11,7 @@ public class EWG {
 		vertices = new TreeMap<String, Vertex>();
 	}
 	
-	public EWG(TreeMap v) {
+	public EWG(TreeMap<String, Vertex> v) {
 		edges = new HashSet<Edge>();
 		vertices = v;
 	}
