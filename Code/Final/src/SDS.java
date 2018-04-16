@@ -65,7 +65,7 @@ public class SDS {
 	public double[][] getResults() {
 		return results;
 	}
-
+	
 	public void run() {
 		run(0);
 	}
@@ -92,7 +92,7 @@ public class SDS {
 	
 	private void init() {
 		for(int i = 0; i < agent.length; i++) {
-			agent[i] = new Agent((graph));
+			agent[i] = new Agent(graph);
 		}
 	}
 	
@@ -153,7 +153,10 @@ public class SDS {
 	
 	private void testD() {
 		int rNum = 0;
-		for(int i = 0; i < agent.length; i++) agent[i].setFitness(agent[i].getHypo().weight());
+		for(Agent a: agent) {
+			double weight = a.getHypo().weight();
+			a.setFitness(weight);
+		}
 		for(int i = 0; i < agent.length; i++) {
 			while(rNum == i)
 				rNum = rand.nextInt(agent.length);
@@ -166,13 +169,9 @@ public class SDS {
 			if(agent[i].getStatus() == false) {
 				int rAgent = rand.nextInt(agent.length);
 				if(agent[rAgent].getStatus()) agent[i].setHypo(agent[rAgent].getHypo());
-				else agent[i].setHypo((graph));
+				else agent[i] = new Agent(graph);
 			}
 		}
-	}
-	
-	private void calcResults(int i) {
-		calcResults(i, false);
 	}
 	
 	private void calcResults(int i, boolean altFit) {

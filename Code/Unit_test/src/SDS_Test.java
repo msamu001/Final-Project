@@ -8,7 +8,7 @@ public class SDS_Test {
 	SDS sds;
 	EWG graph;
 	Agent[] agents;
-	int it = 50;
+	int it = 1;
 	@Before
 	public void setUp() throws Exception {
 		graph = new EWG();
@@ -22,30 +22,29 @@ public class SDS_Test {
 
 	@Test
 	public void test() {
-		// Check agents have been generated and each agent has a hypothesis
-		for(Agent a: agent) {
+		// Test agents have been generated and each agent has a hypothesis
+		for(Agent a: agents) {
 			Assert.assertNotEquals(null, a);
 			Assert.assertNotEquals(null, a.getHypo());
 		}
 		
 		// Test agent's fitness has been calculated
 		sds.run();
-		for(Agent a: agent) {
+		for(Agent a: agents) {
 			Assert.assertNotEquals(0, a.getFitness());
 			Assert.assertNotEquals(a.getHypo().weight(), a.getFitness());
 		}
 		
 		// Test agent's fitness has been calculated
 		sds.run(1);
-		for(Agent a: agent) {
+		for(Agent a: agents) {
 			Assert.assertNotEquals(0, a.getFitness());
 			Assert.assertNotEquals(a.getHypo().weight(), a.getFitness());
 		}
 		
 		// Test agent's fitness has been calculated
 		sds.run(2);
-		for(Agent a: agent) {
-			Agent a = agents[i];
+		for(Agent a: agents) {
 			Assert.assertNotEquals(0, a.getFitness());
 		}
 	}
