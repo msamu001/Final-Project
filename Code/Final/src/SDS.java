@@ -18,28 +18,6 @@ public class SDS {
 		init();
 	}
 	
-	public void run() {
-		run(0);
-	}
-	
-	public void run(int type) {
-		for(int i = 0; i < it; i++) {
-			switch(type) {		
-			case 1:
-				test(true);
-				break;
-			case 2:
-				testD();
-				break;
-			default:
-				test();
-				break;
-			}
-			diffuse();
-			calcResults(i);
-		}
-	}
-	
 	public void setAgents(Agent[] a) {
 		agent = a;
 	}
@@ -87,6 +65,30 @@ public class SDS {
 	public double[][] getResults() {
 		return results;
 	}
+
+	public void run() {
+		run(0);
+	}
+	
+	public void run(int type) {
+		boolean altFit = false;
+		for(int i = 0; i < it; i++) {
+			switch(type) {		
+			case 1:
+				test(true);
+				break;
+			case 2:
+				testD();
+				altFit = true;
+				break;
+			default:
+				test();
+				break;
+			}
+			diffuse();
+			calcResults(i, altFit);
+		}
+	}
 	
 	private void init() {
 		for(int i = 0; i < agent.length; i++) {
@@ -127,13 +129,11 @@ public class SDS {
 				for(int i = 0; i < agent.length; i++) {
 					iSum += agent[i].getFitness(); // creates roulette
 					if(iSum >= rNum) {
-						if(agent[i].getStatus()) { // if agent is active spin roulette again
-							break;
-						} else {
+						if(!agent[i].getStatus()) { // skips active agents
 							agent[i].setStatus(true);
 							sum += agent[i].getFitness();
 							break;
-						}
+						} else if (i == agent.length-1) i = 0; // wrap around
 					}
 				}
 			}
@@ -175,10 +175,10 @@ public class SDS {
 		calcResults(i, false);
 	}
 	
-	private void calcResults(int i, boolean weight) {
+	private void calcResults(int i, boolean altFit) {
 		double sum = 0;
 		
-		if(weight) { // Fitness = Weight
+		if(altFit) { // Fitness = Weight
 			quicksort(agent, agent.length-1, 0); // sorts in acending order
 			
 			results[0][i] = agent[0].getFitness(); // best
