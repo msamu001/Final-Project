@@ -8,6 +8,7 @@ public class SDS_Test {
 	SDS sds;
 	EWG graph;
 	Agent[] agents;
+	int it = 50;
 	@Before
 	public void setUp() throws Exception {
 		graph = new EWG();
@@ -15,25 +16,37 @@ public class SDS_Test {
 		graph.addEdge(new Edge(new Vertex("c"), new Vertex("b"), 2));
 		graph.addEdge(new Edge(new Vertex("a"), new Vertex("c"), 3));
 		
-		sds = new SDS(graph, 10, 30, 1);
+		sds = new SDS(graph, 10, 30, it);
 		agents = sds.getAgents();
 	}
 
 	@Test
 	public void test() {
 		// Check agents have been generated and each agent has a hypothesis
-		for(int i = 0; i < agents.length; i++) {
-			Agent a = agents[i];
+		for(Agent a: agent) {
 			Assert.assertNotEquals(null, a);
 			Assert.assertNotEquals(null, a.getHypo());
 		}
 		
-		// Check agent's fitness has been calculated
+		// Test agent's fitness has been calculated
 		sds.run();
-		for(int i = 0; i < agents.length; i++) {
-			Agent a = agents[i];
+		for(Agent a: agent) {
 			Assert.assertNotEquals(0, a.getFitness());
 			Assert.assertNotEquals(a.getHypo().weight(), a.getFitness());
+		}
+		
+		// Test agent's fitness has been calculated
+		sds.run(1);
+		for(Agent a: agent) {
+			Assert.assertNotEquals(0, a.getFitness());
+			Assert.assertNotEquals(a.getHypo().weight(), a.getFitness());
+		}
+		
+		// Test agent's fitness has been calculated
+		sds.run(2);
+		for(Agent a: agent) {
+			Agent a = agents[i];
+			Assert.assertNotEquals(0, a.getFitness());
 		}
 	}
 }
