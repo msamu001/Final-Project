@@ -49,15 +49,19 @@ public class Agent {
 		hypo.removeAllEdges();
 		
 		while(edges.size() > 0) {
-			// Selects random edge
+			Edge rEdge;
 			int rIndex = rand.nextInt(edges.size());
 			Iterator<Edge> edgeIt = edges.iterator();
-			for(int i = 0; i < rIndex; i++)	edgeIt.next();
-			Edge rEdge = edgeIt.next();
 			
+			// Selects random edge
+			for(int i = 0; i < rIndex; i++)	edgeIt.next();
+			rEdge = edgeIt.next();
+			
+			// check if edge creates loop
 			edges.remove(rEdge);
 			hypo.addEdge(rEdge);
 			DFS checkG = new DFS(hypo, rEdge.getVertex1());
+			
 			if(checkG.hasCycle()) hypo.removeEdge(rEdge);
 			if(checkG.isSpanTree()) return hypo;
 		}

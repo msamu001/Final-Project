@@ -31,6 +31,11 @@ public class DFS {
 				"Spanning Tree: " + spanTree;
 	}
 	
+	public HashSet<Edge> calcCycle() {
+		HashSet<Edge> cycle = new HashSet<Edge>();
+		return cycle;
+	}
+	
 	private void search(EWG g, Vertex s) {
 		HashSet<Vertex> visited = new HashSet<Vertex>();
 		HashSet<Edge> used = new HashSet<Edge>();

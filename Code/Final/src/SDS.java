@@ -1,3 +1,5 @@
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Random;
 
 public class SDS {
@@ -168,12 +170,58 @@ public class SDS {
 		for(int i = 0; i < agent.length; i++) {
 			if(agent[i].getStatus() == false) {
 				int rAgent = rand.nextInt(agent.length);
-				if(agent[rAgent].getStatus()) agent[i].setHypo(agent[rAgent].getHypo());
+				if(agent[rAgent].getStatus()) {
+					agent[i].setHypo(agent[rAgent].getHypo());
+					update(agent[i]);
+				}
 				else agent[i] = new Agent(graph);
 			}
 		}
 	}
 	
+	private void update(Agent a) {
+		EWG hypoU = a.getHypo();
+		HashSet<Edge> avaEdges = graph.getEdges();
+		avaEdges.removeAll(hypoU.getEdges());
+		
+		while(avaEdges.size() > 0) {
+			HashSet<Edge> swapEdges;
+			DFS checkH;
+			Vertex v1,v2;
+			Edge rEdge;
+			int rIndex = rand.nextInt(avaEdges.size());
+			Iterator<Edge> edgeIt = avaEdges.iterator();
+			
+			// select random edge
+			for(int i = 0; i < rIndex; i++)	edgeIt.next();
+			rEdge = edgeIt.next();
+			
+			avaEdges.remove(rEdge);
+			hypoU.addEdge(rEdge);
+			
+			// start from vertex with smallest degree
+			v1 = rEdge.getVertex1();
+			v2 = rEdge.getVertex2();
+			if(v1.degree() <= v2.degree()) checkH = new DFS(hypoU, v1);
+			else checkH = new DFS(hypoU, v2);
+			
+			if(checkH.hasCycle()) { // swap edge randomly while keeping spanTree
+				swapEdges = checkH.calcCycle();
+				swapEdges.remove(rEdge); // prevents newly added edge being removed
+				
+				rIndex = rand.nextInt(swapEdges.size());				
+				Iterator<Edge> edgeIt2 = swapEdges.iterator();
+				
+				// randomly select an edge to be removed
+				for(int i = 0; i < rIndex; i++)	edgeIt2.next();
+				rEdge = edgeIt2.next();				
+				hypoU.removeEdge(rEdge);
+				a.setHypo(hypoU);
+				return;
+			} else hypoU.removeEdge(rEdge);
+		}
+	}
+ 	
 	private void calcResults(int i, boolean altFit) {
 		double sum = 0;
 		

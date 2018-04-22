@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;available&apos; in &apos;SDS.update(...)&apos; to &apos;avaEdges&apos;&#x0D;&#x0A;- Original project: &apos;Final&apos;&#x0D;&#x0A;- Original element: &apos;SDS.update(Agent).available&apos;&#x0D;&#x0A;- Renamed element: &apos;available&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;available&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;{SDS.java[SDS~update~QAgent;@available!3924!3966!3938!3946!QHashSet\&lt;QEdge;&gt;;!0!false" name="avaEdges" references="true" stamp="1524438965543" version="1.0"/>
+</session>
