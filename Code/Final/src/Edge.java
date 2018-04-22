@@ -38,7 +38,7 @@ public class Edge {
 		return vertex[1];
 	}
 	
-	public double getWeight() {
+	public double weight() {
 		return weight;
 	}
 	

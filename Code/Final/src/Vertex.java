@@ -67,7 +67,7 @@ public class Vertex {
 		Iterator<Edge> i = edges.iterator();
 		while(i.hasNext()){
 			Edge tEdge = i.next();
-			s += (tEdge.getOther(this).getLabel() + " " + tEdge.getWeight() + "   ");
+			s += (tEdge.getOther(this).getLabel() + " " + tEdge.weight() + "   ");
 		}
 		return s;
 	}

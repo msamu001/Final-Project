@@ -178,7 +178,7 @@ public class SDS {
 		double sum = 0;
 		
 		if(altFit) { // Fitness = Weight
-			quicksort(agent, agent.length-1, 0); // sorts in acending order
+			quicksort(agent, 0, agent.length-1, altFit); // sorts in ascending order
 			
 			results[0][i] = agent[0].getFitness(); // best
 			results[1][i] = agent[agent.length-1].getFitness(); // worst
@@ -215,22 +215,31 @@ public class SDS {
 		}
 	}
 	
-	private static Agent[] quicksort(Agent[] A, int lo, int hi) {
+	private static Agent[] quicksort(Agent[] E, int lo, int hi) {
+		return quicksort(E,lo,hi,false);
+	}
+	
+	private static Agent[] quicksort(Agent[] A, int lo, int hi, boolean ascend) {
 		if (lo < hi) {
-			int p = partition(A, lo, hi);
-			quicksort(A, lo, p);
-			quicksort(A, p+1, hi);
+			int p = partition(A, lo, hi, ascend);
+			quicksort(A, lo, p, ascend);
+			quicksort(A, p+1, hi, ascend);
 		}
 		return A;
 	}
 	
-	private static int partition(Agent[] A, int lo, int hi) {
+	private static int partition(Agent[] A, int lo, int hi, boolean ascend) {
 		double pivot = A[lo + (hi - lo)/2].getFitness(); // Middle index
 		int i = lo;
 		int j = hi;
 		while(i <= j) {
-			while(A[i].getFitness() > pivot) i++;
-			while(A[j].getFitness() < pivot) j--;
+			if(ascend) {
+				while(A[i].getFitness() < pivot) i++;
+				while(A[j].getFitness() > pivot) j--;
+			} else {
+				while(A[i].getFitness() > pivot) i++;
+				while(A[j].getFitness() < pivot) j--;
+			}
 			if(i >= j) return j;
 			if(i < j) {
 				Agent temp = A[i];

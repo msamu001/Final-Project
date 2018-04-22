@@ -9,6 +9,7 @@ public class Agent_Test {
 	EWG graph, hypo;
 	DFS dfs;
 	Boolean changed;
+	
 	@Before
 	public void setUp() throws Exception {
 		graph = new EWG();
@@ -16,7 +17,6 @@ public class Agent_Test {
 		graph.addEdge(new Edge(new Vertex("c"), new Vertex("b"), 2));
 		graph.addEdge(new Edge(new Vertex("a"), new Vertex("c"), 3));
 		agent = new Agent(graph);
-		dfs = new DFS(graph, "a");
 		changed = false;
 	}
 
@@ -28,6 +28,7 @@ public class Agent_Test {
 		hypo = agent.getHypo();
 		for(int i = 0; i < 50; i++) {
 			agent = new Agent(graph);
+			dfs = new DFS(agent.getHypo(), "a");
 			
 			// Check hypothesis is a spanning tree
 			Assert.assertEquals(3, agent.getHypo().getVertices().size());

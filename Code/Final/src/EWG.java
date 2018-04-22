@@ -135,7 +135,7 @@ public class EWG {
 		double sumWeight = 0;
 		Iterator<Edge> edgeIt = edges.iterator();
 		while(edgeIt.hasNext()) {
-			sumWeight += edgeIt.next().getWeight();
+			sumWeight += edgeIt.next().weight();
 		}
 		return sumWeight;
 	}
