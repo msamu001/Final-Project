@@ -277,7 +277,7 @@ public class SDS {
 	}
 	
 	private static int partition(Agent[] A, int lo, int hi, boolean ascend) {
-		double pivot = A[lo + (hi - lo)/2].getFitness(); // Middle index
+		double pivot = A[lo + (hi - lo)/2].getFitness(); // middle value
 		int i = lo;
 		int j = hi;
 		while(i <= j) {
@@ -289,7 +289,7 @@ public class SDS {
 				while(A[j].getFitness() < pivot) j--;
 			}
 			if(i >= j) return j;
-			if(i < j) {
+			if(i < j) { // swap
 				Agent temp = A[i];
 				A[i] = A[j];
 				A[j] = temp;

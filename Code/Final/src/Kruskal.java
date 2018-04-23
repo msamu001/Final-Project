@@ -43,7 +43,7 @@ public class Kruskal {
 	}
 	
 	private static int partition(Edge[] E, int lo, int hi, boolean ascend) {
-		double pivot = E[lo + (hi - lo)/2].weight(); // Middle index
+		double pivot = E[lo + (hi - lo)/2].weight(); // middle value
 		int i = lo;
 		int j = hi;
 		while(i <= j) {
@@ -55,7 +55,7 @@ public class Kruskal {
 				while(E[j].weight() < pivot) j--;
 			}			
 			if(i >= j) return j;
-			if(i < j) {
+			if(i < j) { // swap
 				Edge temp = E[i];
 				E[i] = E[j];
 				E[j] = temp;
