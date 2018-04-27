@@ -125,12 +125,12 @@ public class SDS {
 		if(roulette) {
 			while(sum < actiRate) {
 				int rNum = rand.nextInt(100);
-				int iSum = 0;
+				int rSum = 0;
 				
 				// Locates agent based by the random number
 				for(int i = 0; i < agent.length; i++) {
-					iSum += agent[i].getFitness(); // creates roulette
-					if(iSum >= rNum) {
+					rSum += agent[i].getFitness(); // creates roulette
+					if(rSum >= rNum) {
 						if(!agent[i].getStatus()) { // skips active agents
 							agent[i].setStatus(true);
 							sum += agent[i].getFitness();
@@ -172,7 +172,7 @@ public class SDS {
 				int rAgent = rand.nextInt(agent.length);
 				if(agent[rAgent].getStatus()) {
 					agent[i].setHypo(agent[rAgent].getHypo());
-					update(agent[i]);
+//					update(agent[i]);
 				}
 				else agent[i] = new Agent(graph);
 			}
@@ -209,7 +209,7 @@ public class SDS {
 				swapEdges = checkH.calcCycle();
 				swapEdges.remove(rEdge); // prevents newly added edge being removed
 				
-				rIndex = rand.nextInt(swapEdges.size());				
+				rIndex = rand.nextInt(swapEdges.size());			
 				Iterator<Edge> edgeIt2 = swapEdges.iterator();
 				
 				// randomly select an edge to be removed

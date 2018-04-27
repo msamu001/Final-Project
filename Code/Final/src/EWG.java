@@ -141,7 +141,11 @@ public class EWG {
 	}
 	
 	public String toString() {
-		return null;
+		String s = ("Vertices: " + vertices.size() + "\n" +
+				"Edges: " + edges.size() + "\n" +
+				"Weight: " + weight() + "\n");
+		for(String l: vertices.keySet()) s += (vertices.get(l).toString() + "\n");
+		return s;
 	}
 	
 	private boolean chkVertex(String label) {
