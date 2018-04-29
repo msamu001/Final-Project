@@ -1,0 +1,48 @@
+import java.util.Random;
+
+public class Global {
+	
+	public static void main(String[] args) {
+		String r = "";
+		EWG graph = genGraph(10);
+		SDS test = new SDS(graph,200,30,500);
+		
+		
+		for(int i = 0; i < 3; i++) {
+			test.run(i);
+			for(double[] d: test.getResults()) {
+				for(double v: d) {
+					r += String.valueOf(v) + "\t";
+				}
+				r += "\n";
+			}
+			r += "\n\n";
+		}
+		
+		System.out.println(r);
+	}
+	
+	public static EWG genGraph(int nodeNum) {
+		Random rand = new Random(); 
+		EWG cGraph = new EWG();
+		
+		// Creates vertices
+		for(int i = 0; i < nodeNum; i++) {
+			String s = String.valueOf(i);
+			cGraph.addVertex(s);
+		}
+		
+		// Adds edges to create a complete graph
+		for(int i = 0; i < nodeNum; i++) {
+			String s1 = String.valueOf(i);
+			Vertex v1 = cGraph.getVertex(s1);
+			for(int j = 0; j < nodeNum; j++) {
+				String s2 = String.valueOf(j);
+				Vertex v2 = cGraph.getVertex(s2);
+				double weight = (double)rand.nextInt(90) + 10;
+				if(!(i == j)) cGraph.addEdge(v1,v2,weight);
+			}
+		}
+		return cGraph;
+	}
+}

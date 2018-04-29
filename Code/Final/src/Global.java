@@ -5,39 +5,18 @@ public class Global {
 	public static void main(String[] args) {
 		String r = "";
 		EWG graph = genGraph(10);
-		SDS test = new SDS(graph,200,30,500);
-		
-		
+		SDS test = new SDS(graph,200,30,1);
+
 		for(int i = 0; i < 3; i++) {
 			test.run(i);
 			for(double[] d: test.getResults()) {
 				for(double v: d) {
 					r += String.valueOf(v) + "\t";
 				}
+				r += "\n";
 			}
-			r += "\n";
-		}
-		
-		test.run();
-		for(double[] d: test.getResults()) {
-			for(double v: d) {
-				r += String.valueOf(v) + "\t";
-			}			
-		}
-		r += "\n";
-		
-//		test.run(1);
-//		for(double[] d: test.getResults()) {
-//			r += String.valueOf(d[0]) + "\t";
-//		}
-//		r += "\n";
-		
-//		test.run(2);
-//		for(double[] d: test.getResults()) {
-//			r += String.valueOf(d[0]) + "\t";
-//		}
-//		r += "\n";
-		
+			r += "\n\n";
+		}		
 		System.out.println(r);
 	}
 	
