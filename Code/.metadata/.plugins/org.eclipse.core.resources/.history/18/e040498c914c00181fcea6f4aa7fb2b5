@@ -1,23 +1,12 @@
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.io.IOException;
 import java.util.Random;
 
 public class Global {
 	
 	public static void main(String[] args) {
-		PrintWriter output = null;
-		String fileName = "Results";
 		String r = "";
 		EWG graph = genGraph(10);
 		SDS test = new SDS(graph,200,30,20);
-		
-		try {
-			output = new PrintWriter(new FileWriter(fileName, false));
-		} catch(IOException e) {
-			System.err.print(e.toString());
-		}
-		
+
 		for(int i = 0; i < 3; i++) {
 			test.run(i);
 			r += "Algorithm " + String.valueOf(i+1) + "\n";
@@ -32,8 +21,12 @@ public class Global {
 			}
 			r += "\n";
 		}
-		output.print(r);
-		output.close();
+		
+//		try {
+//			Scanner file = new Scanner(new File(fileName)); 
+//		} catch(Exception e) {
+//			
+//		}
 		System.out.println(r);
 	}
 	

@@ -33,7 +33,6 @@ public class Global {
 			r += "\n";
 		}
 		output.print(r);
-		output.close();
 		System.out.println(r);
 	}
 	

@@ -1,12 +1,12 @@
 import java.io.FileWriter;
-import java.io.PrintWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Random;
 
 public class Global {
 	
 	public static void main(String[] args) {
-		PrintWriter output = null;
+		PrintWriter output;
 		String fileName = "Results";
 		String r = "";
 		EWG graph = genGraph(10);
@@ -15,7 +15,6 @@ public class Global {
 		try {
 			output = new PrintWriter(new FileWriter(fileName, false));
 		} catch(IOException e) {
-			System.err.print(e.toString());
 		}
 		
 		for(int i = 0; i < 3; i++) {
@@ -32,8 +31,6 @@ public class Global {
 			}
 			r += "\n";
 		}
-		output.print(r);
-		output.close();
 		System.out.println(r);
 	}
 	

@@ -6,7 +6,7 @@ import java.util.Random;
 public class Global {
 	
 	public static void main(String[] args) {
-		PrintWriter output = null;
+		PrintWriter output;
 		String fileName = "Results";
 		String r = "";
 		EWG graph = genGraph(10);
@@ -32,8 +32,6 @@ public class Global {
 			}
 			r += "\n";
 		}
-		output.print(r);
-		output.close();
 		System.out.println(r);
 	}
 	

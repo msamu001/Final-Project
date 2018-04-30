@@ -20,17 +20,17 @@ public class Global {
 		
 		for(int i = 0; i < 3; i++) {
 			test.run(i);
-			r += "Algorithm " + String.valueOf(i+1) + "\n";
+			r += "Algorithm " + String.valueOf(i+1);
+			r += "\n";
 			for(double[] d: test.getResults()) {
+				r += "\n";
 				for(double v: d) {
 					String s = String.valueOf(v);
 					// 4 decimal places
 					if(s.length() - s.indexOf('.') > 4)	s = s.substring(0, s.indexOf('.')+5);
 					r += s + "\t";
 				}
-				r += "\n";
 			}
-			r += "\n";
 		}
 		output.print(r);
 		output.close();

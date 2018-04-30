@@ -20,7 +20,8 @@ public class Global {
 		
 		for(int i = 0; i < 3; i++) {
 			test.run(i);
-			r += "Algorithm " + String.valueOf(i+1) + "\n";
+			r += "Algorithm " + String.valueOf(i+1);
+			
 			for(double[] d: test.getResults()) {
 				for(double v: d) {
 					String s = String.valueOf(v);
