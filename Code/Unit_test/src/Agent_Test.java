@@ -23,7 +23,7 @@ public class Agent_Test {
 		Assert.assertEquals(false, agent.getStatus());
 		
 		hypo = agent.getHypo();
-		for(int i = 0; i < 1; i++) {
+		for(int i = 0; i < 50; i++) {
 			agent = new Agent(graph);
 			dfs = new DFS(agent.getHypo(), "1");
 			

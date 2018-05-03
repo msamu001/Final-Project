@@ -68,9 +68,9 @@ public class EWG {
 	}
 	
 	public void addEdge(Edge e) {
+		if(chkEdge(e)) return;
 		Vertex v1 = e.getVertex1();
 		Vertex v2 = e.getVertex2();
-		
 		
 		if(chkVertex(v1.getLabel())) { // Connect edge to existing vertex
 			Vertex tVertex = vertices.get(v1.getLabel());
@@ -84,7 +84,7 @@ public class EWG {
 			e.setVertex2(tVertex);
 			tVertex.add(e);
 			vertices.put(v2.getLabel(), tVertex);
-		} else addVertex(v2);		
+		} else addVertex(v2);
 		edges.add(e);
 	}
 	
@@ -150,6 +150,15 @@ public class EWG {
 	
 	private boolean chkVertex(String label) {
 		if(vertices.containsKey(label)) return true;
+		return false;
+	}
+	
+	private boolean chkEdge(Edge e) {
+		Iterator<Edge> edgeIt = edges.iterator();
+		while(edgeIt.hasNext()) {
+			Edge tEdge = edgeIt.next();
+			if(tEdge.getLabel().equals(e.getLabel())) return true;
+		}
 		return false;
 	}
 }

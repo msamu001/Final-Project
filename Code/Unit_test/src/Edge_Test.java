@@ -17,6 +17,9 @@ public class Edge_Test {
 		// Check edge orders vertex classes
 		Assert.assertEquals("test", edge.getVertex1().getLabel());
 		Assert.assertEquals("test2", edge.getVertex2().getLabel());
+		edge = new Edge(new Vertex("test"), new Vertex("test2"));
+		Assert.assertEquals("test", edge.getVertex1().getLabel());
+		Assert.assertEquals("test2", edge.getVertex2().getLabel());
 		
 		// Check an edge is connected to two vertices
 		Assert.assertNotEquals(null, edge.getVertex1());
