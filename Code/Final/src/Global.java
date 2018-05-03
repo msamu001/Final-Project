@@ -12,7 +12,7 @@ public class Global {
 		double mst, maxST;
 		EWG graph = genGraph(10);
 		Kruskal test1 = new Kruskal(graph);
-		SDS test2 = new SDS(graph,500,30,1);
+		SDS test2 = new SDS(graph,200,30,500);
 		
 		try {
 			output = new PrintWriter(new FileWriter(fileName, false));
