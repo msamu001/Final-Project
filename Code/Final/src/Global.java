@@ -3,27 +3,40 @@ import java.io.PrintWriter;
 import java.io.IOException;
 import java.util.Random;
 
-public class Global {
-	
+public class Global {	
 	public static void main(String[] args) {
 		PrintWriter output = null;
 		String fileName = "Results";
 		String r = "";
+		String s;
+		double mst, maxST;
 		EWG graph = genGraph(10);
-		SDS test = new SDS(graph,200,30,20);
+		Kruskal test1 = new Kruskal(graph);
+		SDS test2 = new SDS(graph,500,30,1);
 		
 		try {
 			output = new PrintWriter(new FileWriter(fileName, false));
 		} catch(IOException e) {
 			System.err.print(e.toString());
 		}
+	
+		r += "Krushkal" + "\n";		
+		mst = (test1.mst().weight() * 100) / graph.weight();
+		maxST = (test1.maxST().weight() * 100) / graph.weight();
+		for(int i = 0; i < 2; i++) {
+			if(i == 0) s = String.valueOf(mst);
+			else s = String.valueOf(maxST);
+			if(s.length() - s.indexOf('.') > 4)	s = s.substring(0, s.indexOf('.')+5); // 4 decimal places
+			r += s + "\n";
+		}		
+		r += "\n";		
 		
 		for(int i = 0; i < 3; i++) {
-			test.run(i);
+			test2.run(i);
 			r += "Algorithm " + String.valueOf(i+1) + "\n";
-			for(double[] d: test.getResults()) {
+			for(double[] d: test2.getResults()) {
 				for(double v: d) {
-					String s = String.valueOf(v);
+					s = String.valueOf(v);
 					// 4 decimal places
 					if(s.length() - s.indexOf('.') > 4)	s = s.substring(0, s.indexOf('.')+5);
 					r += s + "\t";
@@ -31,7 +44,8 @@ public class Global {
 				r += "\n";
 			}
 			r += "\n";
-		}
+		}		
+		
 		output.print(r);
 		output.close();
 		System.out.println(r);
@@ -54,7 +68,7 @@ public class Global {
 			for(int j = 0; j < nodeNum; j++) {
 				String s2 = String.valueOf(j);
 				Vertex v2 = cGraph.getVertex(s2);
-				double weight = (double)rand.nextInt(90) + 10;
+				double weight = (double)rand.nextInt(91) + 10;
 				if(!(i == j)) cGraph.addEdge(v1,v2,weight);
 			}
 		}

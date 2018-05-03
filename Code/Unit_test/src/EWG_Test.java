@@ -62,18 +62,16 @@ public class EWG_Test {
 		
 		// Check edge cannot be created without vertices
 		graph = new EWG();
-
-		try{
-			graph.addEdge("a", "b");
-		} catch (Exception e){
-			error = e.toString();
-		}
-		Assert.assertEquals("java.lang.NullPointerException", error);
-		
 		Assert.assertEquals(0, graph.getVertices().size());
-		graph.addEdge(new Edge(new Vertex("c"), new Vertex("d")));
+		graph.addEdge(new Edge(new Vertex("a"), new Vertex("b")));
+		Assert.assertNotEquals(null, graph.getVertex("a"));
+		Assert.assertNotEquals(null, graph.getVertex("b"));
+		Assert.assertEquals(2, graph.getVertices().size());
+		graph.addEdge("c","d");
 		Assert.assertNotEquals(null, graph.getVertex("c"));
 		Assert.assertNotEquals(null, graph.getVertex("d"));
-		Assert.assertEquals(2, graph.getVertices().size());
+		Assert.assertEquals(4, graph.getVertices().size());
+		
+		
 	}
 }

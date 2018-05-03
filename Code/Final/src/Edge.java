@@ -15,9 +15,23 @@ public class Edge {
 	// Adds this edge to both vertices
 	private void initialize(Vertex v1, Vertex v2){
 		if(v1.getLabel().equals(v2.getLabel())) throw new IllegalArgumentException("Cannot connect a vertex to itself");
-		vertex = new Vertex[]{v1,v2};
+		if(orderVertex(v1,v2)) vertex = new Vertex[]{v1,v2};
+		else vertex = new Vertex[]{v2,v1};
 		v1.add(this);
 		v2.add(this);
+	}
+	
+	private boolean orderVertex(Vertex v1, Vertex v2) {
+		int asciiV1 = 0;
+		int asciiV2 = 0;
+		
+		for(char c: v1.getLabel().toCharArray()) asciiV1 += (int)c;
+		for(char c: v2.getLabel().toCharArray()) asciiV2 += (int)c;
+		
+		System.out.println(asciiV1 + " " + asciiV2);
+		
+		if(asciiV1 > asciiV2) return false;
+		return true;
 	}
 	
 	public void setVertex1(Vertex v1) {
@@ -58,8 +72,8 @@ public class Edge {
 	}
 	
 	public String toString() {
-		return ("Vertex 1: " + vertex[0].getLabel() + "   " +
-				"Vertex 2: " + vertex[1].getLabel() + "   " +
+		return ("Vertex " + vertex[0].getLabel() + "|   " +
+				"Vertex " + vertex[1].getLabel() + "|   " +
 				"Edge Weight: " + weight + " ");
 	}
 }

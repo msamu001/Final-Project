@@ -63,11 +63,11 @@ public class Vertex {
 	}
 
 	public String toString() {
-		String s = ("Vertex " + label + ": ");
+		String s = ("Vertex " + label + "| ");
 		Iterator<Edge> i = edges.iterator();
 		while(i.hasNext()){
 			Edge tEdge = i.next();
-			s += (tEdge.getOther(this).getLabel() + " " + tEdge.weight() + "   ");
+			s += ("V" + tEdge.getOther(this).getLabel() + " " + tEdge.weight() + "   ");
 		}
 		return s;
 	}

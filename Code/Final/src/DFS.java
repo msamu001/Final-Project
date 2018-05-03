@@ -67,7 +67,7 @@ public class DFS {
 				frontier.add(tEdge.getOther(v));
 				used.add(tEdge);
 			}
-		}		
+		}
 		search(g, visited, used, frontier);
 	}
 }

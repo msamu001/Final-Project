@@ -1,23 +1,25 @@
 public class Kruskal {
-	private EWG mst;
+	private EWG mst, maxST;
 	
 	public Kruskal(EWG graph) {
-		mst = run(graph);
+		mst = run(graph, true);
+		maxST = run(graph, false);
 	}
 	
 	public EWG mst() {
 		return mst;
 	}
 	
-	private EWG run(EWG g) {
+	public EWG maxST() {
+		return maxST;
+	}
+	
+	private EWG run(EWG g, boolean accend) {
 		EWG mst = new EWG(g);
 		Edge[] edges = g.getEdges().toArray(new Edge[g.size()]);
 		mst.removeAllEdges();
 		
-		quicksort(edges, 0, edges.length-1, true);
-		for(Edge e: edges) {
-			System.out.println(e.weight());
-		}
+		quicksort(edges, 0, edges.length-1, accend);
 		
 		for(Edge e: edges) {
 			mst.addEdge(e);			
@@ -55,7 +57,7 @@ public class Kruskal {
 				while(E[j].weight() < pivot) j--;
 			}			
 			if(i >= j) return j;
-			if(i < j) { // swap
+			if(i < j) { // swap 2 elements
 				Edge temp = E[i];
 				E[i] = E[j];
 				E[j] = temp;

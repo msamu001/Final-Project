@@ -12,10 +12,7 @@ public class Agent_Test {
 	
 	@Before
 	public void setUp() throws Exception {
-		graph = new EWG();
-		graph.addEdge(new Edge(new Vertex("a"), new Vertex("b"), 1));
-		graph.addEdge(new Edge(new Vertex("c"), new Vertex("b"), 2));
-		graph.addEdge(new Edge(new Vertex("a"), new Vertex("c"), 3));
+		graph = Global.genGraph(10);
 		agent = new Agent(graph);
 		changed = false;
 	}
@@ -26,16 +23,15 @@ public class Agent_Test {
 		Assert.assertEquals(false, agent.getStatus());
 		
 		hypo = agent.getHypo();
-		for(int i = 0; i < 50; i++) {
+		for(int i = 0; i < 1; i++) {
 			agent = new Agent(graph);
-			dfs = new DFS(agent.getHypo(), "a");
+			dfs = new DFS(agent.getHypo(), "1");
 			
 			// Check hypothesis is a spanning tree
-			Assert.assertEquals(3, agent.getHypo().getVertices().size());
-			Assert.assertEquals(2, agent.getHypo().getEdges().size());
-			Assert.assertEquals(graph.size()-1, agent.getHypo().size());
 			Assert.assertEquals(true, dfs.isSpanTree());
 			Assert.assertEquals(false, dfs.hasCycle());
+			Assert.assertEquals(10, agent.getHypo().order());
+			Assert.assertEquals(9, agent.getHypo().size());
 			
 			// Check hypothesis is random
 			if(hypo.weight() != agent.getHypo().weight()){

@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class DFS_Test {
 	DFS dfs;
-	EWG graph, graph2, graph3;
+	EWG graph, graph2, graph3, graph4;
 	@Before
 	public void setUp() throws Exception {
 		graph = new EWG();

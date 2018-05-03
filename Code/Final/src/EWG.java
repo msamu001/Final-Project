@@ -71,6 +71,7 @@ public class EWG {
 		Vertex v1 = e.getVertex1();
 		Vertex v2 = e.getVertex2();
 		
+		
 		if(chkVertex(v1.getLabel())) { // Connect edge to existing vertex
 			Vertex tVertex = vertices.get(v1.getLabel());
 			e.setVertex1(tVertex);
@@ -83,13 +84,12 @@ public class EWG {
 			e.setVertex2(tVertex);
 			tVertex.add(e);
 			vertices.put(v2.getLabel(), tVertex);
-		} else addVertex(v2);
-		
+		} else addVertex(v2);		
 		edges.add(e);
 	}
 	
 	public void addEdge(String vLabel1, String vLabel2, double w) { // Attaches an edge to each of the vertices via the labels
-		edges.add(new Edge(getVertex(vLabel1), getVertex(vLabel2), w));
+		addEdge(new Edge(new Vertex(vLabel1), new Vertex(vLabel2), w));
 	}
 	
 	public void addEdge(String vLabel1, String vLabel2) { 
@@ -97,7 +97,7 @@ public class EWG {
 	}
 	
 	public void addEdge(Vertex v1, Vertex v2, double w) { // Attaches an edge to each of the vertices
-		edges.add(new Edge(v1, v2, w));
+		addEdge(new Edge(v1, v2, w));
 	}
 	
 	public void addEdge(Vertex v1, Vertex v2) {

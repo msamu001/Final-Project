@@ -122,12 +122,21 @@ public class SDS {
 			}
 			agent[i].setFitness(fitness);
 		}
+		sum = 0;
 		
+		// Sorts agents in descending order
+		quicksort(agent, 0, agent.length-1);
+	
 		// Agents are activated by roulette selection
 		if(roulette) {
 			while(sum < actiRate) {
 				int rNum = rand.nextInt(100);
 				int rSum = 0;
+				
+				// Elite approach
+				agent[0].setStatus(true);
+				sum += agent[0].getFitness();
+//				for(Agent a: agent) System.out.println(a.getFitness());
 				
 				// Locates agent based on the random number
 				for(int i = 0; i < agent.length; i++) {
@@ -141,10 +150,7 @@ public class SDS {
 					}
 				}
 			}
-		} else {
-			// Sorts agents in descending order
-			quicksort(agent, 0, agent.length-1);
-			
+		} else {			
 			// Activate the top X agents when X is actiRate
 			for(int i = 0; i < agent.length; i++) {
 				sum += agent[i].getFitness();
@@ -279,7 +285,7 @@ public class SDS {
 				while(A[j].getFitness() < pivot) j--;
 			}
 			if(i >= j) return j;
-			if(i < j) { // swap
+			if(i < j) { // swap 2 elements
 				Agent temp = A[i];
 				A[i] = A[j];
 				A[j] = temp;
