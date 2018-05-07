@@ -10,7 +10,7 @@ public class SDS {
 	private Random rand;
 	private double[][] results; // best, worst, mean, median
 	
-	public SDS(EWG g, int agentNum, double activation, int iteration) {
+	public SDS(EWG g, int agentNum, int iteration, double activation) {
 		graph = g;
 		agent = new Agent[agentNum];
 		actiRate = activation * 0.01;
@@ -117,26 +117,25 @@ public class SDS {
 			double fitness = agent[i].getFitness();
 			fitness /= sumFit;
 			sum += fitness;
-			if(sum < 100 && i == agent.length-1) {
-				fitness += 100 - sum;
+			if(sum < 1 && i == agent.length-1) {
+				fitness += 1 - sum;
 			}
 			agent[i].setFitness(fitness);
 		}
 		sum = 0;
-		
-		// Sorts agents in descending order
-		quicksort(agent, 0, agent.length-1);
 	
 		// Agents are activated by roulette selection
 		if(roulette) {
+			for(Agent a: agent) if(a.getStatus()) sum += a.getFitness();
 			while(sum < actiRate) {
-				int rNum = rand.nextInt(100);
-				int rSum = 0;
+				System.out.println(sum);
+				double rNum = rand.nextDouble();
+				double rSum = 0;
 				
-				// Elite approach
-				agent[0].setStatus(true);
-				sum += agent[0].getFitness();
-//				for(Agent a: agent) System.out.println(a.getFitness());
+				// Elitest approach
+//				agent[0].setStatus(true);
+//				sum += agent[0].getFitness();
+//				System.out.println(sum + " " + (sum < actiRate));
 				
 				// Locates agent based on the random number
 				for(int i = 0; i < agent.length; i++) {
@@ -148,9 +147,14 @@ public class SDS {
 							break;
 						}
 					}
+					if(i == agent.length-1) i = 0;
 				}
 			}
-		} else {			
+//			System.out.println("COMPLETE");
+		} else {
+			// Sorts agents in descending order
+			quicksort(agent, 0, agent.length-1);
+			
 			// Activate the top X agents when X is actiRate
 			for(int i = 0; i < agent.length; i++) {
 				sum += agent[i].getFitness();
@@ -168,8 +172,7 @@ public class SDS {
 			a.setFitness(weight);
 		}
 		for(int i = 0; i < agent.length; i++) {
-			while(rNum == i)
-				rNum = rand.nextInt(agent.length);
+			while(rNum == i) rNum = rand.nextInt(agent.length);
 			if(agent[i].getFitness() < agent[rNum].getFitness()) agent[i].setStatus(true);
 		}
 	}
