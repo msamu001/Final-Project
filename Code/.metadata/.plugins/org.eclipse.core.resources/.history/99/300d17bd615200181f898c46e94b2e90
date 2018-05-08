@@ -15,22 +15,22 @@ public class Edge_Test {
 
 	@Test
 	public void test() {
-		// Test edge orders vertex classes
+		// Check edge orders vertex classes
 		Assert.assertEquals("test", edge.getVertex1().getLabel());
 		Assert.assertEquals("test2", edge.getVertex2().getLabel());
 		edge = new Edge(new Vertex("test"), new Vertex("test2"));
 		Assert.assertEquals("test", edge.getVertex1().getLabel());
 		Assert.assertEquals("test2", edge.getVertex2().getLabel());
 		
-		// Test an edge is connected to two vertices
+		// Check an edge is connected to two vertices
 		Assert.assertNotEquals(null, edge.getVertex1());
 		Assert.assertNotEquals(null, edge.getVertex2());
 		
-		// Test an edge will not add vertices that create self-loops
+		// Check an edge will not add vertices that create self-loops
 		edge.setVertex2(new Vertex("test"));
 		Assert.assertNotEquals(edge.getVertex1().getLabel(), edge.getVertex2().getLabel());
 		
-		// Test a new edge will not create a self-looping vertex
+		// Check a new edge will not create a self-looping vertex
 		try{
 			edge2 = new Edge(new Vertex("test"), new Vertex("test"));
 		} catch (Exception e){

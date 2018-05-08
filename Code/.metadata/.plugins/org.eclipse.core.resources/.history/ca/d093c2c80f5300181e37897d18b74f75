@@ -3,8 +3,8 @@ import java.util.LinkedList;
 import java.util.Iterator;
 
 public class DFS {
-	private boolean cycle;
-	private boolean spanTree;
+	boolean cycle;
+	boolean spanTree;
 	
 	public DFS(EWG graph, Vertex start) {
 		cycle = false;
