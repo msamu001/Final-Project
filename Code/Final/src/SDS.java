@@ -128,7 +128,7 @@ public class SDS {
 		if(roulette) {
 			for(Agent a: agent) if(a.getStatus()) sum += a.getFitness();
 			while(sum < actiRate) {
-				System.out.println(sum);
+//				System.out.println(sum);
 				double rNum = rand.nextDouble();
 				double rSum = 0;
 				

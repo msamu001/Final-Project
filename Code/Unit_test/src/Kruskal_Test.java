@@ -11,17 +11,21 @@ public class Kruskal_Test {
 	
 	@Before
 	public void setUp() throws Exception {
+		// complete graph with 4 vertices
 		graph = new EWG();
-		graph.addEdge(new Edge(new Vertex("a"), new Vertex("b"), 1));
-		graph.addEdge(new Edge(new Vertex("c"), new Vertex("b"), 2));
-		graph.addEdge(new Edge(new Vertex("a"), new Vertex("c"), 3));
+		graph.addEdge("a","b",1);
+		graph.addEdge("a","c",2);
+		graph.addEdge("a","d",3);
+		graph.addEdge("b","c",4);
+		graph.addEdge("b","d",4);
+		graph.addEdge("c","d",4);
 		k = new Kruskal(graph);
+		dfs = new DFS(k.mst(), "a");
 	}
 
 	@Test
 	public void test() {
-		dfs = new DFS(k.mst(), "a");
-		Assert.assertEquals(3, (int)k.mst().weight());
+		Assert.assertEquals(6, (int)k.mst().weight());
 		Assert.assertEquals(true, dfs.isSpanTree());
 		Assert.assertEquals(false, dfs.hasCycle());
 	}
