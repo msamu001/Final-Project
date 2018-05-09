@@ -7,7 +7,7 @@ import org.junit.Test;
 public class Kruskal_Test {
 	Kruskal k;
 	EWG graph;
-	DFS dfs;
+	DFS dfs, dfsMax;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -21,6 +21,7 @@ public class Kruskal_Test {
 		graph.addEdge("c","d",4);
 		k = new Kruskal(graph);
 		dfs = new DFS(k.mst(), "a");
+		dfsMax = new DFS(k.maxST(), "a");
 	}
 
 	@Test
@@ -28,5 +29,9 @@ public class Kruskal_Test {
 		Assert.assertEquals(6, (int)k.mst().weight());
 		Assert.assertEquals(true, dfs.isSpanTree());
 		Assert.assertEquals(false, dfs.hasCycle());
+		
+		Assert.assertEquals(11, (int)k.maxST().weight());
+		Assert.assertEquals(true, dfsMax.isSpanTree());
+		Assert.assertEquals(false, dfsMax.hasCycle());
 	}
 }

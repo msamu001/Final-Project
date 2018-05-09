@@ -5,50 +5,60 @@ import java.util.Random;
 
 public class Global {	
 	public static void main(String[] args) {
-		PrintWriter output = null;
-		String fileName = "Results";
-		String r = "";
-		String s;
+		PrintWriter output = null;		
 		double mst, maxST;
-		EWG graph = genGraph(10);
-		Kruskal test1 = new Kruskal(graph);
-		SDS test2 = new SDS(graph,200,100,30);
-		 
-		try {
-			output = new PrintWriter(new FileWriter(fileName, false));
-		} catch(IOException e) {
-			System.err.print(e.toString());
-		}
-	
-		r += "Krushkal" + "\n";		
-		mst = (test1.mst().weight() * 100) / graph.weight();
-		maxST = (test1.maxST().weight() * 100) / graph.weight();
-		for(int i = 0; i < 2; i++) {
-			if(i == 0) s = String.valueOf(mst);
-			else s = String.valueOf(maxST);
-			if(s.length() - s.indexOf('.') > 4)	s = s.substring(0, s.indexOf('.')+5); // 4 decimal places
-			r += s + "\n";
-		}		
-		r += "\n";		
 		
-		for(int i = 0; i < 3; i++) {
-			test2.run(i);
-			r += "Algorithm " + String.valueOf(i+1) + "\n";
-			for(double[] d: test2.getResults()) {
-				for(double v: d) {
-					s = String.valueOf(v);
-					// 4 decimal places
-					if(s.length() - s.indexOf('.') > 4)	s = s.substring(0, s.indexOf('.')+5);
-					r += s + "\t";
+		for(int i = 0; i < 50; i++) {
+			String fileName = "Results ";
+			String r = "";	// Results
+			String s;	// general purpose
+			
+			EWG graph = genGraph(100);
+			Kruskal test1 = new Kruskal(graph);
+			SDS test2 = new SDS(graph,200,500,30);
+			
+			// Automated file creation
+			fileName += String.valueOf(i+1);
+			try {
+				output = new PrintWriter(new FileWriter(fileName, false));
+			} catch(IOException e) {
+				System.err.print(e.toString());
+			}
+			
+			// Calculate fitness
+			r += "Krushkal" + "\n";		
+			mst = (test1.mst().weight() * 100) / graph.weight();
+			maxST = (test1.maxST().weight() * 100) / graph.weight();
+			
+			// Print kruskal results
+			for(int j = 0; j < 2; j++) {
+				if(j == 0) s = String.valueOf(mst);
+				else s = String.valueOf(maxST);
+				if(s.length() - s.indexOf('.') > 4)	s = s.substring(0, s.indexOf('.')+5); // 4 decimal places
+				r += s + "\n";
+			}		
+			r += "\n";		
+			
+			// Print SDS results
+			for(int j = 0; j < 3; j++) {
+				test2.run(j);
+				r += "Algorithm " + String.valueOf(j+1) + "\n\n";
+				for(double[] d: test2.getResults()) {
+					for(double v: d) {
+						s = String.valueOf(v);
+						// 4 decimal places
+						if(s.length() - s.indexOf('.') > 4)	s = s.substring(0, s.indexOf('.')+5);
+						r += s + "\t";
+					}
+					r += "\n\n";
 				}
 				r += "\n";
-			}
-			r += "\n";
-		}		
-		
-		output.print(r);
-		output.close();
-		System.out.println(r);
+			}		
+			
+			output.print(r);
+			output.close();
+			System.out.println(r);
+		}
 	}
 	
 	public static EWG genGraph(int nodeNum) {
