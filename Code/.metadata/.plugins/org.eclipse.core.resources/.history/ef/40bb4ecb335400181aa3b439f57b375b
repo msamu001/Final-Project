@@ -131,7 +131,7 @@ public class SDS {
 				double rNum = rand.nextDouble();
 				double rSum = 0;
 				
-				// Elitist approach
+				// Elitest approach
 //				agent[0].setStatus(true);
 //				sum += agent[0].getFitness();
 				

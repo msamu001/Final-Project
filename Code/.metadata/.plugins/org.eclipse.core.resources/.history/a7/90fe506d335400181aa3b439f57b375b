@@ -128,12 +128,14 @@ public class SDS {
 		if(roulette) {
 			for(Agent a: agent) if(a.getStatus()) a.setStatus(false);
 			while(sum < actiRate) {
+//				System.out.println(sum);
 				double rNum = rand.nextDouble();
 				double rSum = 0;
 				
-				// Elitist approach
+				// Elitest approach
 //				agent[0].setStatus(true);
 //				sum += agent[0].getFitness();
+//				System.out.println(sum + " " + (sum < actiRate));
 				
 				// Locates agent based on the random number
 				for(int i = 0; i < agent.length; i++) {
@@ -148,6 +150,7 @@ public class SDS {
 					if(i == agent.length-1) i = 0;
 				}
 			}
+//			System.out.println("COMPLETE");
 		} else {
 			// Sorts agents in descending order
 			quicksort(agent, 0, agent.length-1);
