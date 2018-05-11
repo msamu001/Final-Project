@@ -17,8 +17,14 @@ public class EWG {
 	}
 	
 	public EWG(EWG g) {
-		edges = new HashSet<Edge>(g.getEdges());
-		vertices = new TreeMap<String, Vertex>(g.getVertices());
+		vertices = new TreeMap<String, Vertex>();
+		edges = new HashSet<Edge>();
+		for(Edge e: g.getEdges()) {
+			Vertex v1 = new Vertex(e.getVertex1().getLabel());
+			Vertex v2 = new Vertex(e.getVertex2().getLabel());
+			this.addEdge(v1, v2, e.weight());
+		}
+		
 	}
 	
 	public int order() { // Returns the number of Vertices in graph
