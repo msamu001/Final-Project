@@ -19,8 +19,7 @@ public class EWG_Test {
 	}
 
 	@Test
-	public void test() {
-	
+	public void test() {	
 		// Check vertex can exist in graph unconnected
 		Assert.assertEquals(0, graph.getVertices().size());
 		graph.addVertex("a");

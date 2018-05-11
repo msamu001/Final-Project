@@ -5,12 +5,17 @@ public class Edge {
 	
 	public Edge(Vertex v1, Vertex v2) {
 		weight = 0;
-		initialize(v1, v2);
+		initialize(v1, v2, true);
 	}
 	
 	public Edge(Vertex v1, Vertex v2, double w) {
 		weight = w;
-		initialize(v1, v2);
+		initialize(v1, v2, true);
+	}
+	
+	public Edge(Vertex v1, Vertex v2, double w, boolean attach) {
+		weight = w;
+		initialize(v1, v2, attach);
 	}
 	
 	public void setVertex1(Vertex v1) {
@@ -61,14 +66,16 @@ public class Edge {
 	}
 	
 	// Adds this edge to both vertices
-	private void initialize(Vertex v1, Vertex v2){
+	private void initialize(Vertex v1, Vertex v2, boolean attach){
 		if(v1.getLabel().equals(v2.getLabel())) throw new IllegalArgumentException("Cannot connect a vertex to itself");
 		if(orderVertex(v1,v2)) vertex = new Vertex[]{v1,v2};
 		else vertex = new Vertex[]{v2,v1};
-		v1.add(this);
-		v2.add(this);
 		label = "";
 		for(Vertex v: vertex) label += v.getLabel();
+		if(attach) {
+			v1.add(this);
+			v2.add(this);
+		}
 	}
 	
 	private boolean orderVertex(Vertex v1, Vertex v2) {
