@@ -126,14 +126,16 @@ public class SDS {
 	
 		// Agents are activated by roulette selection
 		if(roulette) {
-			for(Agent a: agent) if(a.getStatus()) a.setStatus(false);
+			for(Agent a: agent) if(a.getStatus()) sum += a.getFitness();
 			while(sum < actiRate) {
+//				System.out.println(sum);
 				double rNum = rand.nextDouble();
 				double rSum = 0;
 				
-				// Elitist approach
+				// Elitest approach
 //				agent[0].setStatus(true);
 //				sum += agent[0].getFitness();
+//				System.out.println(sum + " " + (sum < actiRate));
 				
 				// Locates agent based on the random number
 				for(int i = 0; i < agent.length; i++) {
@@ -178,9 +180,10 @@ public class SDS {
 		for(int i = 0; i < agent.length; i++) {
 			if(agent[i].getStatus() == false) {
 				int rAgent = rand.nextInt(agent.length);
-				if(agent[rAgent].getStatus()) {
-					agent[i].setHypo(agent[rAgent].getHypo());
-//					update(agent[i]);
+				Agent r = agent[rAgent];
+				if(r.getStatus()) {
+					agent[i].setHypo(r.getHypo());
+					update(agent[i]);
 				}
 				else agent[i] = new Agent(graph);
 			}
@@ -188,12 +191,27 @@ public class SDS {
 	}
 	
 	private void update(Agent a) {
+		HashSet<Edge> swapEdges, avaEdges;
 		EWG hypoU = a.getHypo();
-		HashSet<Edge> avaEdges = graph.getEdges();
-		avaEdges.removeAll(hypoU.getEdges());
+		avaEdges = new HashSet<Edge>();
+	
+		// Find all unused edges
+		for(Edge e: graph.getEdges()) {
+			boolean add = true;
+			for(Edge f: hypoU.getEdges()) {
+				if(e.getLabel().equals(f.getLabel())) {
+					add = false;
+					break;
+				}
+			}
+			if(add) {
+				Vertex v1 = hypoU.getVertex(e.getVertex1().getLabel());
+				Vertex v2 = hypoU.getVertex(e.getVertex2().getLabel());
+				avaEdges.add(new Edge(v1,v2,e.weight(),false));
+			}
+		}
 		
 		while(avaEdges.size() > 0) {
-			HashSet<Edge> swapEdges;
 			DFS checkH;
 			Vertex v1,v2;
 			Edge rEdge;
@@ -214,7 +232,7 @@ public class SDS {
 			else checkH = new DFS(hypoU, v2);
 			
 			if(checkH.hasCycle()) { // swap edge randomly while keeping spanTree
-				swapEdges = checkH.calcCycle();
+				swapEdges = checkH.getCycle();
 				swapEdges.remove(rEdge); // prevents newly added edge being removed
 				
 				rIndex = rand.nextInt(swapEdges.size());			
@@ -222,7 +240,7 @@ public class SDS {
 				
 				// randomly select an edge to be removed
 				for(int i = 0; i < rIndex; i++)	edgeIt2.next();
-				rEdge = edgeIt2.next();				
+				rEdge = edgeIt2.next();
 				hypoU.removeEdge(rEdge);
 				a.setHypo(hypoU);
 				return;
