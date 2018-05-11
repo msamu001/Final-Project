@@ -15,11 +15,12 @@ public class DFS_Test {
 		
 		graph.addVertex("a");
 		
-		graph2.addEdge(new Edge(new Vertex("a"), new Vertex("b")));
+		graph2.addEdge("a","b");
 		
-		graph3.addEdge(new Edge(new Vertex("a"), new Vertex("b")));
-		graph3.addEdge(new Edge(new Vertex("c"), new Vertex("b")));
-		graph3.addEdge(new Edge(new Vertex("a"), new Vertex("c")));
+		graph3.addEdge("a","b");
+		graph3.addEdge("a","c");
+		graph3.addEdge("a","d");
+		graph3.addEdge("c","d");		
 	}
 
 	@Test
@@ -38,6 +39,7 @@ public class DFS_Test {
 		dfs = new DFS(graph3, "a");
 		Assert.assertEquals(false, dfs.isSpanTree());
 		Assert.assertEquals(true, dfs.hasCycle());
+		Assert.assertEquals(3, dfs.getCycle().size());
 	}
 
 }
