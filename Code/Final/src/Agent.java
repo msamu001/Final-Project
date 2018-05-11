@@ -21,7 +21,7 @@ public class Agent {
 	}
 	
 	public void setHypo(EWG h) {
-		hypo = h;
+		hypo = new EWG(h);
 	}
 	
 	public EWG getHypo() {

@@ -132,10 +132,9 @@ public class SDS {
 				double rNum = rand.nextDouble();
 				double rSum = 0;
 				
-				// Elitest approach
+//				// Elitest approach
 //				agent[0].setStatus(true);
 //				sum += agent[0].getFitness();
-//				System.out.println(sum + " " + (sum < actiRate));
 				
 				// Locates agent based on the random number
 				for(int i = 0; i < agent.length; i++) {
@@ -165,17 +164,17 @@ public class SDS {
 	}
 	
 	private void testD() {
-		int rNum = 0;
+		int rNum = rand.nextInt(agent.length);
 		for(Agent a: agent) {
 			double weight = a.getHypo().weight();
 			a.setFitness(weight);
 		}
+		
 		for(int i = 0; i < agent.length; i++) {
 			while(rNum == i) rNum = rand.nextInt(agent.length);
 			if(agent[i].getFitness() < agent[rNum].getFitness()) agent[i].setStatus(true);
 		}
 	}
-	
 	private void diffuse() {
 		for(int i = 0; i < agent.length; i++) {
 			if(agent[i].getStatus() == false) {
