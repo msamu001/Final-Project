@@ -5,20 +5,22 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class EWG_Test {
-	EWG graph;
+	EWG graph, graph2;
 	Edge edge;
 	Vertex vertex;
 	int countV;
-	String error;
+	String error, t, g;
 	
 	@Before
 	public void setUp() throws Exception {
 		graph = new EWG();
+		graph2 = Global.genGraph(4);
 		countV = 0;
 	}
 
 	@Test
 	public void test() {
+	
 		// Check vertex can exist in graph unconnected
 		Assert.assertEquals(0, graph.getVertices().size());
 		graph.addVertex("a");
@@ -80,5 +82,17 @@ public class EWG_Test {
 		Assert.assertEquals(1,graph.size());
 		graph.addEdge("b","a");
 		Assert.assertEquals(1,graph.size());
+		
+		// Test vertices are not shared throughout classes
+		EWG temp = graph2;
+		Agent a = new Agent(graph2);
+		t = temp.toString();
+		g = graph2.toString();
+		Assert.assertEquals(true, t.equals(g));
+		
+		Agent a2 = new Agent(graph2);
+		t = temp.toString();
+		g = graph2.toString();
+		Assert.assertEquals(true, t.equals(g));
 	}
 }
