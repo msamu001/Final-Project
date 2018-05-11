@@ -3,23 +3,26 @@ import java.util.LinkedList;
 import java.util.Iterator;
 
 public class DFS {
-	private boolean cycle;
+	HashSet<Edge> cycle;
+	private boolean hasCycle;
 	private boolean spanTree;
 	
 	public DFS(EWG graph, Vertex start) {
-		cycle = false;
+		hasCycle = false;
 		spanTree = false;
+		cycle = new HashSet<Edge>();
 		search(graph, start);
 	}
 	
 	public DFS(EWG graph, String start) {
-		cycle = false;
+		hasCycle = false;
 		spanTree = false;
+		cycle = new HashSet<Edge>();
 		search(graph, graph.getVertex(start));
 	}
 	
 	public boolean hasCycle() {
-		return cycle;
+		return hasCycle;
 	}
 	
 	public boolean isSpanTree() {
@@ -27,13 +30,13 @@ public class DFS {
 	}
 	
 	public String toString() {
-		return 	"Loop: " + cycle + "\n" +
+		return 	"Loop: " + hasCycle + "\n" +
 				"Spanning Tree: " + spanTree;
 	}
 	
-	public HashSet<Edge> calcCycle() {
-		HashSet<Edge> cycle = new HashSet<Edge>();
-		return cycle;
+	public HashSet<Edge> getCycle() {
+		if(hasCycle) return cycle;
+		return null;
 	}
 	
 	private void search(EWG g, Vertex s) {
@@ -46,6 +49,7 @@ public class DFS {
 	
 	private void search(EWG g, HashSet<Vertex> visited, HashSet<Edge> used, LinkedList<Vertex> frontier) {
 		if(frontier.size() == 0) {
+			cycle = null;
 			if(g.getVertices().size() == 1) return;
 			if(visited.size() == g.getVertices().size()) spanTree = true;
 			return;
@@ -57,17 +61,21 @@ public class DFS {
 		
 		// Add accessible nodes to frontier (stack)
 		Iterator<Edge> edgeIt = v.getEdges().iterator();
+		boolean deadEnd = true; // 
 		while(edgeIt.hasNext()) {
 			Edge tEdge = edgeIt.next();
 			if(!used.contains(tEdge)) {
+				deadEnd = false;
+				if(tEdge.getOther(v).degree() != 1) cycle.add(tEdge);
 				if(frontier.contains(tEdge.getOther(v))) {
-					cycle = true;
+					hasCycle = true;
 					return;
 				}
 				frontier.add(tEdge.getOther(v));
 				used.add(tEdge);
 			}
 		}
+		if(deadEnd) cycle = new HashSet<Edge>();
 		search(g, visited, used, frontier);
 	}
 }
