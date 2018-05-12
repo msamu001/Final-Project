@@ -40,6 +40,11 @@ public class DFS_Test {
 		Assert.assertEquals(false, dfs.isSpanTree());
 		Assert.assertEquals(true, dfs.hasCycle());
 		Assert.assertEquals(3, dfs.getCycle().size());
+		
+		dfs = new DFS(graph3, "b");
+		Assert.assertEquals(false, dfs.isSpanTree());
+		Assert.assertEquals(true, dfs.hasCycle());
+		Assert.assertEquals(3, dfs.getCycle().size());
 	}
 
 }

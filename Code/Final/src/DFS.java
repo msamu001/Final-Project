@@ -3,7 +3,7 @@ import java.util.LinkedList;
 import java.util.Iterator;
 
 public class DFS {
-	HashSet<Edge> cycle;
+	private HashSet<Edge> cycle;
 	private boolean hasCycle;
 	private boolean spanTree;
 	
@@ -50,8 +50,8 @@ public class DFS {
 	private void search(EWG g, HashSet<Vertex> visited, HashSet<Edge> used, LinkedList<Vertex> frontier) {
 		if(frontier.size() == 0) {
 			cycle = null;
-			if(g.getVertices().size() == 1) return;
-			if(visited.size() == g.getVertices().size()) spanTree = true;
+			if(g.order() == 1) return;
+			if(visited.size() == g.order()) spanTree = true;
 			return;
 		}
 		
@@ -66,7 +66,7 @@ public class DFS {
 			Edge tEdge = edgeIt.next();
 			if(!used.contains(tEdge)) {
 				deadEnd = false;
-				if(tEdge.getOther(v).degree() != 1) cycle.add(tEdge);
+				if(tEdge.getOther(v).degree() != 1 && v.degree() != 1) cycle.add(tEdge);
 				if(frontier.contains(tEdge.getOther(v))) {
 					hasCycle = true;
 					return;
