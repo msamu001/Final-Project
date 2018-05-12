@@ -5,17 +5,17 @@ public class Edge {
 	
 	public Edge(Vertex v1, Vertex v2) {
 		weight = 0;
-		init(v1, v2, true);
+		initialize(v1, v2, true);
 	}
 	
 	public Edge(Vertex v1, Vertex v2, double w) {
 		weight = w;
-		init(v1, v2, true);
+		initialize(v1, v2, true);
 	}
 	
 	public Edge(Vertex v1, Vertex v2, double w, boolean attach) {
 		weight = w;
-		init(v1, v2, attach);
+		initialize(v1, v2, attach);
 	}
 	
 	public void setVertex1(Vertex v1) {
