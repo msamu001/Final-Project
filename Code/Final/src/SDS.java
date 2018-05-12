@@ -132,10 +132,6 @@ public class SDS {
 				double rNum = rand.nextDouble();
 				double rSum = 0;
 				
-//				// Elitest approach
-//				agent[0].setStatus(true);
-//				sum += agent[0].getFitness();
-				
 				// Locates agent based on the random number
 				for(int i = 0; i < agent.length; i++) {
 					rSum += agent[i].getFitness(); // creates roulette
