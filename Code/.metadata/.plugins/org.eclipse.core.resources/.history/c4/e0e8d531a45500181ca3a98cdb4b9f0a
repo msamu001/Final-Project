@@ -13,7 +13,7 @@ public class Global {
 			String r = "";	// Results
 			String s;	// general purpose
 			
-			EWG graph = genGraph(50);
+			EWG graph = genGraph(40);
 			Kruskal test1 = new Kruskal(graph);
 			SDS test2 = new SDS(graph,200,500,30);
 			

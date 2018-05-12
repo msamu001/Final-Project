@@ -105,14 +105,14 @@ public class SDS {
 		double sumFit = 0;
 		double sum = 0;
 		
-		// Calculates the temp fitness of each agent
+		// Calculates the fitness of each agent
 		for(int i = 0; i < agent.length; i++) {
 			double hypoWeight = agent[i].getHypo().weight();
 			agent[i].setFitness(graphWeight - hypoWeight);
 			sumFit += agent[i].getFitness();
 		}
 		
-		// Convert temp fitness to % 
+		// Convert fitness to % 
 		for(int i = 0; i < agent.length; i++) {
 			double fitness = agent[i].getFitness();
 			fitness /= sumFit;
@@ -171,7 +171,6 @@ public class SDS {
 			if(agent[i].getFitness() < agent[rNum].getFitness()) agent[i].setStatus(true);
 		}
 	}
-	
 	private void diffuse() {
 		for(int i = 0; i < agent.length; i++) {
 			if(agent[i].getStatus() == false) {
