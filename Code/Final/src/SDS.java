@@ -8,7 +8,7 @@ public class SDS {
 	private double actiRate;
 	private int it;
 	private Random rand;
-	private double[][] results; // best, worst, mean, median
+	private double[][] results; // best, worst, mean, median, SD
 	
 	public SDS(EWG g, int agentNum, int iteration, double activation) {
 		graph = g;
@@ -16,7 +16,7 @@ public class SDS {
 		actiRate = activation * 0.01;
 		it = iteration;
 		rand = new Random();
-		results = new double[4][iteration];
+		results = new double[5][iteration];
 		init();
 	}
 	
@@ -62,6 +62,10 @@ public class SDS {
 	
 	public double[] getMedian() {
 		return results[3];
+	}
+	
+	public double[] getSD() {
+		return results[4];
 	}
 	
 	public double[][] getResults() {
@@ -263,6 +267,14 @@ public class SDS {
 		// mean
 		for(Agent a: agent) sum += a.getFitness();
 		results[2][i] = sum/agent.length;
+		sum = 0;
+		
+		// standard deviation
+		for(int j = 0; j < agent.length; j++) {
+			double temp = (agent[j].getFitness() - results[2][i]);
+			sum += temp * temp;
+		}
+		results[4][i] = sum/agent.length;
 		sum = 0;
 			
 		// median
