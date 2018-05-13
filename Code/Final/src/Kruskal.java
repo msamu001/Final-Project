@@ -16,7 +16,7 @@ public class Kruskal {
 	
 	private EWG run(EWG g, boolean accend) {
 		EWG mst = new EWG(g);
-		Edge[] edges = g.getEdges().toArray(new Edge[g.size()]);
+		Edge[] edges = mst.getEdges().toArray(new Edge[g.size()]);
 		mst.removeAllEdges();
 		
 		quicksort(edges, 0, edges.length-1, accend);
