@@ -20,6 +20,7 @@ public class Kruskal_Test {
 		graph.addEdge("b","d",4);
 		graph.addEdge("c","d",4);
 		k = new Kruskal(graph);
+//		for(Vertex v: k.mst().getVertices().values())System.out.println(v);
 		dfs = new DFS(k.mst(), "a");
 		dfsMax = new DFS(k.maxST(), "a");
 	}
