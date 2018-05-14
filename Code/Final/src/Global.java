@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Global {	
 	public static void main(String[] args) {
-		PrintWriter output = null;		
+		PrintWriter output = null;
 		double mst, maxST;
 		
 		for(int i = 0; i < 50; i++) {
@@ -13,7 +13,7 @@ public class Global {
 			String r = "";	// Results
 			String s;	// general purpose
 			
-			EWG graph = genGraph(50);
+			EWG graph = genGraph(10);
 			Kruskal test1 = new Kruskal(graph);
 			SDS test2 = new SDS(graph,200,500,30);
 			
@@ -25,8 +25,24 @@ public class Global {
 				System.err.print(e.toString());
 			}
 			
+			// Print SDS results
+			for(int j = 0; j < 3; j++) {
+				test2.run(j);
+				r += "Algorithm " + String.valueOf(j+1) + "\t";
+				for(double[] d: test2.getResults()) {
+					for(double v: d) {
+						s = String.valueOf(v);
+						// 4 decimal places
+						if(s.length() - s.indexOf('.') > 4)	s = s.substring(0, s.indexOf('.')+5);
+						r += s + "\t";
+					}
+					r += "\t";
+				}
+				r += "\n";
+			}
+			
 			// Calculate fitness
-			r += "Krushkal" + "\n";		
+			r += "Krushkal" + "\t";		
 			mst = (test1.mst().weight() * 100) / graph.weight();
 			maxST = (test1.maxST().weight() * 100) / graph.weight();
 			
@@ -35,28 +51,12 @@ public class Global {
 				if(j == 0) s = String.valueOf(mst);
 				else s = String.valueOf(maxST);
 				if(s.length() - s.indexOf('.') > 4)	s = s.substring(0, s.indexOf('.')+5); // 4 decimal places
-				r += s + "\n";
-			}		
-			r += "\n";		
+				r += s + "\t\t";
+			}
 			
-			// Print SDS results
-			for(int j = 0; j < 3; j++) {
-				test2.run(j);
-				r += "Algorithm " + String.valueOf(j+1) + "\n\n";
-				for(double[] d: test2.getResults()) {
-					for(double v: d) {
-						s = String.valueOf(v);
-						// 4 decimal places
-						if(s.length() - s.indexOf('.') > 4)	s = s.substring(0, s.indexOf('.')+5);
-						r += s + "\t";
-					}
-					r += "\n\n";
-				}
-				r += "\n";
-			}			
 			output.print(r);
 			output.close();
-			System.out.println(r);
+			System.out.println(r + "\n");
 		}
 	}
 	
