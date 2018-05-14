@@ -16,7 +16,7 @@ public class SDS {
 		actiRate = activation * 0.01;
 		it = iteration;
 		rand = new Random();
-		results = new double[5][iteration];
+		results = new double[5][1];
 		init();
 	}
 	
@@ -90,8 +90,8 @@ public class SDS {
 				break;
 			}
 			diffuse();
-			calcResults(i);
 		}
+		calcResults(0);
 	}
 	
 	private void init() {
@@ -132,7 +132,6 @@ public class SDS {
 		if(roulette) {
 			for(Agent a: agent) if(a.getStatus()) sum += a.getFitness();
 			while(sum < actiRate) {
-//				System.out.println(sum);
 				double rNum = rand.nextDouble();
 				double rSum = 0;
 				
@@ -173,6 +172,7 @@ public class SDS {
 		for(int i = 0; i < agent.length; i++) {
 			while(rNum == i) rNum = rand.nextInt(agent.length);
 			if(agent[i].getFitness() < agent[rNum].getFitness()) agent[i].setStatus(true);
+			else agent[i].setStatus(false);
 		}
 	}
 	
@@ -194,7 +194,7 @@ public class SDS {
 		HashSet<Edge> swapEdges, avaEdges;
 		EWG hypoU = a.getHypo();
 		avaEdges = new HashSet<Edge>();
-	
+		
 		// Find all unused edges
 		for(Edge e: graph.getEdges()) {
 			boolean add = true;
@@ -228,17 +228,16 @@ public class SDS {
 			// start from vertex with smallest degree
 			v1 = rEdge.getVertex1();
 			v2 = rEdge.getVertex2();
-			if(v1.degree() <= v2.degree()) checkH = new DFS(hypoU, v1);
+			if(v1.degree() < v2.degree()) checkH = new DFS(hypoU, v1);
 			else checkH = new DFS(hypoU, v2);
 			
 			if(checkH.hasCycle()) { // swap edge randomly while keeping spanTree
 				swapEdges = checkH.getCycle();
 				swapEdges.remove(rEdge); // prevents newly added edge being removed
 				
+				// randomly select an edge to be removed
 				rIndex = rand.nextInt(swapEdges.size());			
 				Iterator<Edge> edgeIt2 = swapEdges.iterator();
-				
-				// randomly select an edge to be removed
 				for(int i = 0; i < rIndex; i++)	edgeIt2.next();
 				rEdge = edgeIt2.next();
 				hypoU.removeEdge(rEdge);
@@ -260,7 +259,7 @@ public class SDS {
 		
 		for(Agent a: agent)	a.setFitness(calcFitness(a, graph));
 		quicksort(agent, 0, agent.length-1, true); // sorts in ascending order
-			
+		
 		results[0][i] = agent[0].getFitness(); // best
 		results[1][i] = agent[agent.length-1].getFitness(); // worst
 			
@@ -274,7 +273,8 @@ public class SDS {
 			double temp = (agent[j].getFitness() - results[2][i]);
 			sum += temp * temp;
 		}
-		results[4][i] = sum/agent.length;
+		sum /= agent.length;
+		results[4][i] = Math.sqrt(sum);
 		sum = 0;
 			
 		// median
