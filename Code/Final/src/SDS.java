@@ -16,7 +16,7 @@ public class SDS {
 		actiRate = activation * 0.01;
 		it = iteration;
 		rand = new Random();
-		results = new double[5][0];
+		results = new double[5][1];
 		init();
 	}
 	
