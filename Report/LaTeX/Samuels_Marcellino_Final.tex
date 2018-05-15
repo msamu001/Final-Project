@@ -6,7 +6,6 @@
 \usepackage{amssymb}
 \usepackage{algorithm}
 \usepackage{xcolor}
-\usepackage[noend]{algpseudocode}
 
 \begin{document}
 
@@ -19,12 +18,7 @@
 \bibliographystyle{AISB2008}
 
 \begin{abstract}
-The purpose of this paper is to show a contributor the required
-style for a paper. The specifications
-for layout are described so that non-\LaTeX\ users can create their
-own style sheet to achieve the same layout. The source for the
-sample file is available for \LaTeX\ users. The PostScript and the
-PDF file is available for all.
+The minimum spanning tree problem is one of the most common combinatorial optimization problems today. The solution to this problem has various applications across many fields of research. This paper takes a look at some non-deterministic approaches to solving this problem using the swarm intelligence meta-heuristic. Research is conducted using 5 different benchmarking graphs. These results have led to a rather unexpected discovery which has the potential to lead to an efficient solution for dealing with NP-hard minimum spanning tree problems.
 \end{abstract}
 
 \ack
@@ -48,7 +42,7 @@ The time taken {$T$} for a worker to complete its task is proportional to the di
 
 To simplify this to a minimum spanning tree (MST) problem it will be assumed that the player will have enough points to create a network containing all nodes. Now the minimisation of the overall time taken by workers fits perfectly into graph theory as the network can be translated into an undirected weighted graph as each node is a vertex (node) and each path is an edge. The weight of each edge is the distance from one node to another.
 
-The most common algorithmic solutions to the MST problem are deterministic which mean that only a single solution will be returned even if there are multiple optimal solutions (FIG). As the MST problem is a sub problem of the worker’s time optimisation, it will be necessary to view all optimal and some sub-optimal solutions as due to the fact that they may yield better times depending on the distances between worker nodes and resource nodes. As a result of this the focus of this project will be to discover whether Stochastic Diffusion Search (SDS) is able to create MST from various benchmarking graphs. A natural computing algorithm has been selected for its ability to utilise stochasticity, which should lead to a variety of solutions in addition to an optimal solution. This variation is beneficial as it may give rise to the potential of multiple optimal solutions being found.
+The most common algorithmic solutions to the MST problem are deterministic which mean that only a single solution will be returned even if there are multiple optimal solutions. As the MST problem is a sub problem of the worker’s time optimisation, it will be necessary to view all optimal and some sub-optimal solutions as due to the fact that they may yield better times depending on the distances between worker nodes and resource nodes. As a result of this the focus of this project will be to discover whether Stochastic Diffusion Search (SDS) is able to create MST from various benchmarking graphs. A natural computing algorithm has been selected for its ability to utilise stochasticity, which should lead to a variety of solutions in addition to an optimal solution. This variation is beneficial as it may give rise to the potential of multiple optimal solutions being found.
 
 This project aims to implement multiple variations of the SDS algorithm to run tests that will be carried out on a set of benchmarking graphs that will become increasingly more complex via the size (see Section and order (see Section \ref{graph}) of the graph. The data produced from these tests will be used to compare and contrast the variations of this algorithm. This will assess the capabilities of SDS for MST using random graph generation and hopefully find the limitations as well as potential areas for improvement.  It will be interesting to see the results and how this algorithm compares to other algorithms such as Kruskal’s \cite[kruskal1956shortest].
 
@@ -86,9 +80,9 @@ Let {$(G = (V, E)$} be a weighted undirected graph, where V = {$ \{\ v_1, v_2,�
 A complete graph is one in which every vertex is connected to every other vertex.
 
 \begin{itemize}
-\item The size of a graph is the number of edges contained inside the graph. (FIG)
+\item The size of a graph is the number of edges contained inside the graph.
 \item The order of a graph is the number of vertices inside the graph.
-\item The degree of a vertex is the number of edges connected to the vertex. (FIG)
+\item The degree of a vertex is the number of edges connected to the vertex.
 \end{itemize}
 
 
@@ -226,7 +220,7 @@ This algorithm consists of the following steps:
 
 The MST has a long and rich history in the field of mathematics and computer science. It is interesting to see that the first proposed algorithm \cite[nevsetvril2001otakar] for the MST problem has stood the test of time in terms of efficiency. The Boruvka algorithm was proposed in 1926, and has an identical time complexity to both Kruskal’s \cite[kruskal1956shortest] and Prim's \cite[prim1957shortes] which were produced over 20 years later. Furthermore only a small handful of algorithms such as \cite[yao19750] have been created with better time complexities; however these time increases are minor improvements such as the algorithm proposed in a.c.c yao paper which presents an algorithm with a time complexity of {$O (|E| log log |V|)$). One of the main issues in the optimisation of the algorithm’s time complexity is the fact it is bound by the complexity of the sorting algorithm used to order the edges. As a result this project has not focused too heavily on the optimisation of the time complexity.
 
-Another issue that arose is one caused by the very nature of these algorithms and that is the fact that they are deterministic. This means that the algorithm will always run the same solution despite how many exist in the graph (FIG). As the MST is often a sub-problem of a larger issue this can severely restrict the number of viable solutions. The alternative approach to this is to use stochastic algorithms but a purely stochastic algorithm would not be of any use as it could take larger amounts of time to find the optimal solution if at all. This is where natural computing algorithms become useful as they are able to utilise randomness while converging on the optimal solution(s).
+Another issue that arose is one caused by the very nature of these algorithms and that is the fact that they are deterministic. This means that the algorithm will always run the same solution despite how many exist in the graph. As the MST is often a sub-problem of a larger issue this can severely restrict the number of viable solutions. The alternative approach to this is to use stochastic algorithms but a purely stochastic algorithm would not be of any use as it could take larger amounts of time to find the optimal solution if at all. This is where natural computing algorithms become useful as they are able to utilise randomness while converging on the optimal solution(s).
 
 The paper by Hong Lin and Gengui Zhou \cite[liu2009minimum] proposes a GA approach to the MST problem. In this paper a method for reducing the search space had been implemented by utilising p\"urfer numbers. A p\"urfer number is an encoded spanning tree, the relationship between tree and number is a one to one relationship. This means that a p\"urfer number will always correspond to a spanning tree. This is a brilliant idea as it removes the need to sort edges which opens up the possibility of significantly faster algorithms.
 
@@ -344,7 +338,7 @@ The testing phase for SDS 2 uses the roulette select method to decide which agen
 The next steps are a continuation from step 3 of SDS 1. The test phase of SDS 2 is defined as the following:
 
 \begin{enumerate}
-\item Create a roulette wheel based off the fitness of each agent such that the larger the value of {$F$} the larger the section on the roulette wheel. (FIGURE)
+\item Create a roulette wheel based off the fitness of each agent such that the larger the value of {$F$} the larger the section on the roulette wheel.
 \item Generate a random number between 0 and 100 exclusive and the selected agent which this value corresponds to will become active. Active agents are removed from the roulette wheel.
 \item Continue step 2 until the sum of all active agents’ fitness is larger than {$X$}.
 \end{enumerate}
@@ -570,7 +564,7 @@ If the current edge does is not contained within the ‘used’ HashSet then the
 Once all iterations are complete the ‘deadEnd’ boolean is checked, if it is true then the cycle HashSet is emptied. With the assumption that the current vertex is not the starting vertex and that the starting vertex is not an isolated vertex the following logic hold true:
 
 \begin{itemize}
-\item If a vertex has any number of edges that have not been used it must have more than one edge. This is because an edge has been used to travel to the vertex (FIG). 
+\item If a vertex has any number of edges that have not been used it must have more than one edge. This is because an edge has been used to travel to the vertex.
 \item The inverse logic is if a vertex has no edges to traverse it must have one edge; the edge used to travel to the vertex. Therefore this vertex is a dead end.
 \end{itemize}
 
@@ -640,9 +634,83 @@ This section will present the data gather from testing the SDS methods on each b
 
 \begin{figure}
 \centerline{\includegraphics[height=2.5in]{10MSTA1.png}}
-\caption{SDS 1 on 10 Vertices MST
-processes } \label{SDS1 G10}
+\caption{SDS 1 on 10 Vertices MST}
 \end{figure}
+
+\begin{figure}
+\centerline{\includegraphics[height=2.5in]{10MSTA2.png}}
+\caption{SDS 2 on 10 Vertices MST}
+\end{figure}
+
+\begin{figure}
+\centerline{\includegraphics[height=2.5in]{10MSTA3.png}}
+\caption{SDS 3 on 10 Vertices MST}
+\end{figure}
+
+
+\begin{figure}
+\centerline{\includegraphics[height=2.5in]{20MSTA1.png}}
+\caption{SDS 1 on 20 Vertices MST}
+\end{figure}
+
+\begin{figure}
+\centerline{\includegraphics[height=2.5in]{20MSTA2.png}}
+\caption{SDS 2 on 20 Vertices MST}
+\end{figure}
+
+\begin{figure}
+\centerline{\includegraphics[height=2.5in]{20MSTA3.png}}
+\caption{SDS 3 on 20 Vertices MST}
+\end{figure}
+
+
+\begin{figure}
+\centerline{\includegraphics[height=2.5in]{30MSTA1.png}}
+\caption{SDS 1 on 30 Vertices MST}
+\end{figure}
+
+\begin{figure}
+\centerline{\includegraphics[height=2.5in]{30MSTA2.png}}
+\caption{SDS 2 on 30 Vertices MST}
+\end{figure}
+
+\begin{figure}
+\centerline{\includegraphics[height=2.5in]{30MSTA3.png}}
+\caption{SDS 3 on 30 Vertices MST}
+\end{figure}
+
+
+\begin{figure}
+\centerline{\includegraphics[height=2.5in]{40MSTA1.png}}
+\caption{SDS 1 on 40 Vertices MST}
+\end{figure}
+
+\begin{figure}
+\centerline{\includegraphics[height=2.5in]{40MSTA2.png}}
+\caption{SDS 2 on 40 Vertices MST}
+\end{figure}
+
+\begin{figure}
+\centerline{\includegraphics[height=2.5in]{40MSTA3.png}}
+\caption{SDS 3 on 40 Vertices MST}
+\end{figure}
+
+
+\begin{figure}
+\centerline{\includegraphics[height=2.5in]{50MSTA1.png}}
+\caption{SDS 1 on 50 Vertices MST}
+\end{figure}
+
+\begin{figure}
+\centerline{\includegraphics[height=2.5in]{50MSTA2.png}}
+\caption{SDS 2 on 50 Vertices MST}
+\end{figure}
+
+\begin{figure}
+\centerline{\includegraphics[height=2.5in]{50MSTA3.png}}
+\caption{SDS 3 on 50 Vertices MST}
+\end{figure}
+
 
 \begin{table}
 \centering
@@ -740,5 +808,110 @@ Upon completing these update this project can be used as the gateway into the NP
 \bibliography{references_NC}
 
 \section{Appendix}
+
+\subsection Progress Logs
+
+Weekly Report
+
+Supervisor Notes
+Unfortunately I was unable to attend the meeting for this week. However, I have been in contact via email to inform my supervisor of the current goals that I have set for the week. 
+\begin{itemize}
+\item	Create Git Repository
+\item	Structure the final report
+\item	Implement Edge Weighted Graph
+\item Create a progression planner
+\end{itemize}
+This week’s progress
+I have created a new git repository to look after version control for the project. Three new folders have been added to split the work into appropriate sections:
+\begin{itemize}
+\item	Report – This folder will contain each draft of the final report as well as the weekly reports for the project
+\item	Code – This section will contain the java implementation of the code along with any resources needed for the program.
+\item	Misc – This will contain miscellaneous files such as the proposal, material for any presentations, diagrams, videos, images etc.
+\end{itemize}
+More folders may be added in futures such as research or other important work.
+I have laid out the initial structure for the final report and have been adding to the implementation section as I create the code.
+I have planned a week and a half of the future projections in my notebook. During next week I will create a more formal version using a Gantt chart or some form of planning tool. I will also extend the plan to cover the rest of the month and keep extending it as time goes on.
+I have implemented two out of three classed for the edge weighted graph and should be finished by the end of this week. After which I will test each function and log the test, result and error in addition to the fix for each error. All of this will be added to the final report in the appropriate sections.\\
+
+
+
+Weekly Report
+
+Supervisor Notes
+Unfortunately, due to a miscommunication from my supervisor I have been unable to meet him this week. However, I have been able contact him via email and create a check list of goals for the week
+
+\begin{itemize}
+\item	Learn Test Driven Development
+\item	Create a list of requirements for the Edge Weighted Graph and connected classes
+\item	Implement Unit tests for Edges and Vectors
+\item	Implement both and Edge and Vector class that passed these tests
+\item	Extend the development planner
+\end{itemize}
+This week’s progress
+I have been learning Test Driven Development (TDD) over the past week to have a professional testing standard for my project. The lecture for this week was extremely useful as it covers unit testing, one of the most important aspects of TDD.
+I have created a list of requirements for Edge Weighted Graphs and its components:
+Requirements for Edge Weighed Graph
+
+\begin{itemize}
+\item	The ability to construct regular and edge weighted graphs
+\item	The graph should not allow vertices to be connected to themselves (no self-loops)
+\item	There must be no duplicate connections between vertices
+\item	The label of each vertex must be unique
+\end{itemize}
+Requirements for Edges:
+
+\begin{itemize}
+\item	Must be connected on both sides as an edge cannot exist without a vertex
+\item	The graph will not contain any vertices that self-loop
+\item	The edge must be able to return either vertex connected for traversal
+\end{itemize}
+Requirements for Vertex:
+
+\begin{itemize}
+\item	The ability to add and remove edges to allow for construction of graphs
+Each vertex must know how many edges are connected to it at any given time
+\item	Each vertex must be able to return specific edges for traversals
+\end{itemize}
+I have implemented and tested the vertex class in java, however I have not completed the edges and thus could not complete the edge weighted graph. I will continue working on this during the weekend and will hopefully complete this before next week.
+This week I may have set to high a workload as I have been unable to find time to extend the development process (gantt chart).\\
+
+
+Weekly Report
+
+Supervisor Notes
+During the meeting I updated my supervisor on the current progress of the project. After this we discussed research methods for stochastic programs. My supervisor informed me that I would need to perform between 30 and 50 tests per benchmark then find the mean, standard deviation, the best and worst outcome. After testing I would need to evaluate the results, preferably against another person’s work. I informed my supervisor that I have been unable to find benchmarks for graphs. My supervisor then helped me look for research papers for Minimum spanning trees and we found a good number of useful papers. During the search it became clear that Degree Constrained Minimum Spanning Tree is the most regularly researched as of current.
+This week’s checklist should cover the following 2 weeks
+\begin{itemize}
+\item	Implement Unit tests for EWG
+\item	Implement EWG to pass test
+\item	Designed SDS for MST
+\item	Create Requirements for SDS
+\item	Implement Unit tests for SDS
+\item	Implement SDS to pass tests
+\item	Read research papers
+\item	Research Degree Constrained Minimum Spanning Tree
+\item	Create Gantt Chart
+\end{itemize}
+This week’s progress
+I have modified the requirements for the EWG to provide a broader test. The requirements are the following:
+\begin{itemize}
+\item	The graph should not allow vertices to be connected to themselves (no self-loops)
+\item	There must be no duplicate connections between vertices
+\item	The label of each vertex must be unique
+\item	Vertices can exist without any connecting edges
+\item	Vertices can exist with connecting edges
+\item	raversal between all connected vertices is possible
+\item	Edges cannot exist without connected vertices
+\item	The graph can be deconstructed
+\end{itemize}
+I implemented all the Unit tests for the EWG with the exception of Traversal and Deconstruction which I will complete later today. I have filled out the EWG skeleton class’ methods and have ensured that it passes all tests that have been implemented.
+I have begun researching how to create a Gantt chart and designed SDS for MST.\\
+
+
+
+\subsection Preliminary report
+
+
+
 
 \end{document}
