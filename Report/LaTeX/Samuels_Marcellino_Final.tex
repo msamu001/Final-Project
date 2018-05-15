@@ -103,12 +103,12 @@ The MST problem is finding a spanning tree{$T$} from {$G$}, such that the sum of
 
 \subsection{Deterministic Algorithms}
 
-During the inception of the MST problem various independent sources and algorithmic solutions where created (REF).The first efficient solution to be published was developed by Boruvka in 1926 (REF), despite this the two that became the most popular are known as Kruskal’s (REF) and Prims (REF) algorithm. The time complexities of these algorithms are theoretically identical. However, these times tend to vary when implemented as a result the data structures that are used.
+During the inception of the MST problem various independent sources and algorithmic solutions where created \cite[graham1985histor].The first efficient solution to be published was developed by Boruvka in 1926 \cite[nevsetvril2001otakar], despite this the two that became the most popular are known as Kruskal’s \cite[kruskal1956shortest] and Prims \cite[prim1957shortest] algorithm. The time complexities of these algorithms are theoretically identical. However, these times tend to vary when implemented as a result the data structures that are used.
 
 
 \subsubsection{Kruskal's Algorithm}
 
-Kruskal’s algorithm is a greedy algorithm that aims to find the minimum spanning tree of a connected weighted graph. The algorithm was created by Joseph Kruskal in 1956 (REF) in the book ‘Proceedings of the American Mathematical Society’; and it is considered to be one of the first efficient algorithmic solutions to the MST problem.
+Kruskal’s algorithm is a greedy algorithm that aims to find the minimum spanning tree of a connected weighted graph. The algorithm was created by Joseph Kruskal in 1956 \cite[kruskal1956shortest] in the book ‘Proceedings of the American Mathematical Society’; and it is considered to be one of the first efficient algorithmic solutions to the MST problem.
 Kruskal’s algorithm consists of the following steps:
 
 \begin{enumerate}
@@ -209,7 +209,7 @@ O1 = [ 0 {\color{red} 1} 0 0 0 ]
 This algorithm presented in by S. M. Hosseini, A. A. Khaled, M. Jin \cite[hosseini2012solving] is used to find a solution to the Euclidean MST problem, however this can be seen as finding the MST of a complete undirected graph. To find a solution to the Euclidean MST problem vertices in the Euclidean space will be connected to each other. In order to create these connections in an optimal manner, a straight line is required, as it provides will be the fastest way to get from vertex A to vertex B. As the distance between two points in the Euclidean MST problem is constant, the distances can be used to represent a weight of an edge in an 
 . Another important factor is that a line can be created from any vertex to any other vertex. This property corresponds with that of a connected graph as all vertices are connected to all other vertices. 
 
-The imperialist competitive algorithm is a population based algorithm which falls under the category of the swarm intelligence meta-heuristic, as such it is non-deterministic and requires multiple iterations to converge on a solution. Moreover, the imperialist competitive algorithm (ICA) is one of the newer population based algorithms which was inspired by humanities social evolution \cite[]. Following this ideology countries are created, each with its own initial cost which dictates its power. The goal of each country is to grow in power and take over all other countries to become one global nation (optimal solution).
+The imperialist competitive algorithm is a population based algorithm which falls under the category of the swarm intelligence meta-heuristic, as such it is non-deterministic and requires multiple iterations to converge on a solution. Moreover, the imperialist competitive algorithm (ICA) is one of the newer population based algorithms which was inspired by humanities social evolution \cite[atashpaz2007imperialist]. Following this ideology countries are created, each with its own initial cost which dictates its power. The goal of each country is to grow in power and take over all other countries to become one global nation (optimal solution).
 This algorithm consists of the following steps:
 
 \begin{enumerate}
@@ -257,9 +257,13 @@ The conclusion of this is that ICA has a superior run time, while GA converges f
 
 
 \section{Other Algorithms}
+
 The algorithms in this section are not directly related to the MST problem. However, they have been implemented as part of the project, and it is therefore important to understand some of the inner workings of these algorithms.
 
+
 \subsection{Quicksort}
+label{quicksort}
+
 A comparison sorting algorithm is any that uses a comparison operation such as less than (<), greater than (>), equal to (=) or a combination of these to determine the order of two elements when sorting. Once sorted the list should possess these properties:
 
 \begin{itemize}
@@ -267,15 +271,14 @@ A comparison sorting algorithm is any that uses a comparison operation such as l
 \item Totality – If {$a \leq b$} or {$b \leq a$} for all elements {$a$} and {$b$}
 \end{itemize}
 
-There are a large number of algorithms that fall under the category of a comparison sort and quicksort one of them. The quicksort algorithm was developed by Tony Hoare in 1959 and published in his paper “Algorithm 64 quicksort” \cite[hoare1961algorithm] in 1961. As the name would imply quicksort is one of the faster sorting algorithms with an average time complexity of {$O (n log n)$} when using the middle element as the pivot. However the algorithm’s worst case performance is {$O (n^2)$} like many other sorting algorithms, fortunately this is an unlikely case.
-
-The quicksort algorithm consists of the following step:
+There are a large number of algorithms that fall under the category of a comparison sort and quicksort one of them. The quicksort algorithm was developed by Tony Hoare in 1959 and published in his paper “Algorithm 64 quicksort” \cite[hoare1961algorithm] in 1961. As the name would imply quicksort is one of the faster sorting algorithms with an average time complexity of {$O (n log n)$} when using the middle element as the pivot. However the algorithm’s worst case performance is {$O (n^2)$} like many other sorting algorithms, fortunately this is an unlikely case. The quicksort algorithm consists of the following step:
 
 \begin{enumerate}
 \item Pivot {$P$} is an element selected from array {$A$}
 \item Sort the array such that all elements smaller than the pivot are to the left of {$P$} and all elements larger than {$P$} are on the right. If an element is equal to {$P$} then it can be placed to the left or the right of {$P$} as long as this is kept consistent. Once complete {$P$} is in the correct location. This function is known as partitioning.
 \item The array will now consists of two sub arrays, the first consisting of all elements smaller than {$P$} and the second consisting of all elements larger than the {$P$}. Recursively run step 1 and 2 for the remaining sub-arrays.
 \end{enumerate}
+
 
 \subsection{Depth First Search}
 
@@ -476,7 +479,7 @@ An edge is used to connect to vertices within a graph. For an edge weighted grap
 
 An array has been used to store the two Vertex classes as the maximum number of vertex is predetermined to be two. A double is used for the weight variable to enable the used of fractions. 
 The class constructor has been overloaded to allow for 3 constructors. This allows for the representation of a weight-less graphs in addition to the EWG. As such the first constructor takes two Vertex classes and sets the weight to 0 to express a regular graph. The second constructor takes two Vertex classes and a numerical value (double) for the weight to express the weighted graph. Within both of these constructors the init()  method is called by passing both Vertex classes and a true boolean to the method to automatically connect the edge to both Vertex classes passed as arguments. The third constructor is used to bypass this automated connection for the creation of edges which may or may not be added to the graph.
-The private method named init() has been created which takes two Vertex classes and a boolean as an argument. This method invokes the orderVertex() method to determine the order in which the Vertex classes will be stored via the label of the Vertex class. The Edge class is then labelled using a combination of the two labels from the Vertex classes. For example if the first class is labelled “1” and the second class is labelled “2” the Edge class’ label will be “12”. This is used to detect different instances of the same edge much like the Vertex class (IN REF). Next the init() method invokes the add() method of each Vertex class to add the newly created edge (this) to the edge sets of each Vertex class thus completing the “handshake” between these classes. This final step is determined by the boolean argument passed to this class, if the boolean is true then the final step is run. Otherwise the last step is not executed and the method is now complete. The access modifier of this method has been set to private to enforce encapsulation as this method is only required within the edge class itself.
+The private method named init() has been created which takes two Vertex classes and a boolean as an argument. This method invokes the orderVertex() method to determine the order in which the Vertex classes will be stored via the label of the Vertex class. The Edge class is then labelled using a combination of the two labels from the Vertex classes. For example if the first class is labelled “1” and the second class is labelled “2” the Edge class’ label will be “12”. This is used to detect different instances of the same edge much like the Vertex class. Next the init() method invokes the add() method of each Vertex class to add the newly created edge (this) to the edge sets of each Vertex class thus completing the “handshake” between these classes. This final step is determined by the boolean argument passed to this class, if the boolean is true then the final step is run. Otherwise the last step is not executed and the method is now complete. The access modifier of this method has been set to private to enforce encapsulation as this method is only required within the edge class itself.
 The Edge class has been given a special getter method to help with the traversal of the graph. The method is called getOther() and takes a vertex as an argument. The method will then check if the vertex is connected to the node. If the vertex is connected to the node, then method will return the vertex that is connected to the over side of the edge. If the vertex is not connected to the node then with method returns null.
 For the following example the Vertex class variables will be named V1 and V2 respectively:
 (FIG)
@@ -592,14 +595,14 @@ The init() method is a private method that populate all of the agents and stores
 
 The run() method is used to run all iterations of the test, diffusion and update phase. It has the capability of running all 3 variations of SDS. This method takes an integer value as an argument to determine which version of SDS to run. This is achieved via a switch statement inside the method. SDS 1 is the default for the statement; SDS 2 is run with an argument of 2, and SDS 3 with an argument of 3.
 
-The test phase has been split into two different methods.  The first of these methods is called test() and encompasses SDS 1 and 2, which is made possible due to the two algorithms sharing the same fitness function.  A boolean argument is used to decide which of the two algorithms will run. This method calculates the temporary fitness T (IN REF) of all agents by using a for loop to iterate though every agent. Next a second for loop iterates through the array of agents once again, this time converting the temporary fitness to a percentage that becomes the agent’s fitness. An if statement is used to patch up any total fitness that is lower than 100 \%\. This occurs due to the fraction leaving small gaps due to rounding or other issues such as:
+The test phase has been split into two different methods.  The first of these methods is called test() and encompasses SDS 1 and 2, which is made possible due to the two algorithms sharing the same fitness function.  A boolean argument is used to decide which of the two algorithms will run. This method calculates the temporary fitness {$T$} of all agents by using a for loop to iterate though every agent. Next a second for loop iterates through the array of agents once again, this time converting the temporary fitness to a percentage that becomes the agent’s fitness. An if statement is used to patch up any total fitness that is lower than 100 \%\. This occurs due to the fraction leaving small gaps due to rounding or other issues such as:
 
 \begin{equation}
 33.3 + 33.3 + 33.3 = 99.9
 \end{equation}
 
 Now the fitness has been calculated the algorithm splits into 2 sections via an if statement that used the boolean argument. When the boolean is true the SDS 2 variant will run, this is the roulette selection activation. SDS 2 will run until the sum of all active agents is greater than or equal to the actiRate. A for loop is used to sum the total fitness of all agents before beginning the selection process, if the sum is larger than the actiRate the test phase will be skipped. This means a large portion of agents have become active or that a few agents have a high fitness percentage as they are significantly closer to the MST than the other agents.
-When the boolean is false SDS 1 will run after the agents receive their fitness. First quicksort(IN REF) is used to sort the agents in descending order by their fitness. This approach takes an elitist approach by setting the first agent of the array to active. A for loop is then used to iterate through the rest of the agents. This activates all agents until the sum of all agents exceeds the actiRate.
+When the boolean is false SDS 1 will run after the agents receive their fitness. First quicksort(see rev{quicksort}) is used to sort the agents in descending order by their fitness. This approach takes an elitist approach by setting the first agent of the array to active. A for loop is then used to iterate through the rest of the agents. This activates all agents until the sum of all agents exceeds the actiRate.
 
 The final testing method is named testD() \footnote{The D stands for diffusion as they methods are very similar.} and is the implementation of SDS 3. A for loop is used to set the fitness of all agents to be equal to the total weight of their hypothesis. Another for loop is constructed that compares the current agent’s fitness to a random agent. If the current agent has a lower fitness then the random agent it will become active. A random integer between 0 and the population size of the agents (exclusive) has been used to select the random agent. A while loop which prevent two identical agents being matched is used. If the agents match it will generate another random number.
 
@@ -683,7 +686,7 @@ Krushkal      & 1.0598	 & 8.4946 \\
 \end{tabular}
 \end{table}
 
-\begin{table}[]
+\begin{table}
 \centering
 \caption{50 Verticex MST}
 \begin{tabular}{l|lllll}
