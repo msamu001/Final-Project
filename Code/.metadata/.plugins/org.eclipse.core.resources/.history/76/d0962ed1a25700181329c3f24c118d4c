@@ -54,11 +54,18 @@ public class DFS {
 			if(visited.size() == g.order()) spanTree = true;
 			return;
 		}
+//		for(Vertex v: frontier)System.out.print(v.getLabel() + " ");
+//		System.out.println();
 		
 		// Open last node in frontier (stack)
 		Vertex v = frontier.removeLast();
 		visited.add(v);
 		
+//		if(!cycle.isEmpty()) for(Edge e: cycle) {
+//			System.out.print("CYCLE ");
+//			System.out.print(e.getLabel() + " ");
+//			System.out.println();
+//		}
 		// Add accessible nodes to frontier (stack)
 		Iterator<Edge> edgeIt = v.getEdges().iterator();
 		boolean deadEnd = true; // 
