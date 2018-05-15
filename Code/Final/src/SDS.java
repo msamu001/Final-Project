@@ -16,7 +16,7 @@ public class SDS {
 		actiRate = activation * 0.01;
 		it = iteration;
 		rand = new Random();
-		results = new double[5][1];
+		results = new double[5][0];
 		init();
 	}
 	
@@ -242,6 +242,16 @@ public class SDS {
 				rEdge = edgeIt2.next();
 				hypoU.removeEdge(rEdge);
 				a.setHypo(hypoU);
+				checkH = new DFS(hypoU, rEdge.getVertex1());
+				if(checkH.hasCycle()) {
+					a = new Agent(graph);
+					return;
+				}
+				checkH = new DFS(hypoU, rEdge.getVertex2());
+				if(checkH.hasCycle()) {
+					a = new Agent(graph);
+					return;
+				}				
 				return;
 			} else hypoU.removeEdge(rEdge);
 		}
