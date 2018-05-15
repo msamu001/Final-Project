@@ -10,7 +10,7 @@
 
 \begin{document}
 
-\title{A Non-Determinist approach the Minimum Spanning Tree Problem}
+\title{A Non-Determinist approach to the Minimum Spanning Tree Problem}
 
 \author{Marcellino Samuels\institute{Department of Computing, Goldsmiths, University of London, London SE14 6NW, UK., email: msamu001@gold.ac.uk} }
 
@@ -34,6 +34,7 @@ this paper.
 \tableofcontents
 
 \section{Introcution}
+
 
 This project originated from the desire to create an optimal network of nodes within a massive multi-player online game. Each node has been assigned a value that represents the cost to connect the node to the player’s network. Players are given a finite number of points to create their network. Nodes fall into 3 categories:
 
@@ -102,7 +103,7 @@ The MST problem is finding a spanning tree{$T$} from {$G$}, such that the sum of
 
 \subsection{Deterministic Algorithms}
 
-During the inception of the MST problem various independent sources and algorithmic solutions where created (REF).The first efficient solution to be published was developed by Borůvka in 1926 (REF), despite this the two that became the most popular are known as Kruskal’s (REF) and Prims (REF) algorithm. The time complexities of these algorithms are theoretically identical. However, these times tend to vary when implemented as a result the data structures that are used.
+During the inception of the MST problem various independent sources and algorithmic solutions where created (REF).The first efficient solution to be published was developed by Boruvka in 1926 (REF), despite this the two that became the most popular are known as Kruskal’s (REF) and Prims (REF) algorithm. The time complexities of these algorithms are theoretically identical. However, these times tend to vary when implemented as a result the data structures that are used.
 
 
 \subsubsection{Kruskal's Algorithm}
@@ -183,10 +184,10 @@ In the following example a single point crossover will be shown with a crossover
 P1 = [ 0 0 0 {\color{red} 1 1}  ]
 \end{center}
 \begin{center}
-P2 = [ 1 1 1 {\color{green} 0 0}  ]
+P2 = [ 1 1 1 {\color{blue} 0 0}  ]
 \end{center}
 \begin{center}
-O1 = [ 0 0 0 {\color{green} 0 0}  ]
+O1 = [ 0 0 0 {\color{blue} 0 0}  ]
 \end{center}
 \begin{center}
 O2 = [ 1 1 1 {\color{red} 1 1}  ]
@@ -222,13 +223,14 @@ This algorithm consists of the following steps:
 \end{enumerate}
 
 \subsection{Summary of Literature}
-The MST has a long and rich history in the field of mathematics and computer science. It is interesting to see that the first proposed algorithm \cite[nevsetvril2001otakar] for the MST problem has stood the test of time in terms of efficiency. The Borůvka algorithm was proposed in 1926, and has an identical time complexity to both Kruskal’s \cite[kruskal1956shortest] and Prim's \cite[prim1957shortes] which were produced over 20 years later. Furthermore only a small handful of algorithms such as \cite[yao19750] have been created with better time complexities; however these time increases are minor improvements such as the algorithm proposed in a.c.c yao paper which presents an algorithm with a time complexity of O (|E| log log |V|). One of the main issues in the optimisation of the algorithm’s time complexity is the fact it is bound by the complexity of the sorting algorithm used to order the edges. As a result this project has not focused too heavily on the optimisation of the time complexity.
+
+The MST has a long and rich history in the field of mathematics and computer science. It is interesting to see that the first proposed algorithm \cite[nevsetvril2001otakar] for the MST problem has stood the test of time in terms of efficiency. The Boruvka algorithm was proposed in 1926, and has an identical time complexity to both Kruskal’s \cite[kruskal1956shortest] and Prim's \cite[prim1957shortes] which were produced over 20 years later. Furthermore only a small handful of algorithms such as \cite[yao19750] have been created with better time complexities; however these time increases are minor improvements such as the algorithm proposed in a.c.c yao paper which presents an algorithm with a time complexity of {$O (|E| log log |V|)$). One of the main issues in the optimisation of the algorithm’s time complexity is the fact it is bound by the complexity of the sorting algorithm used to order the edges. As a result this project has not focused too heavily on the optimisation of the time complexity.
 
 Another issue that arose is one caused by the very nature of these algorithms and that is the fact that they are deterministic. This means that the algorithm will always run the same solution despite how many exist in the graph (FIG). As the MST is often a sub-problem of a larger issue this can severely restrict the number of viable solutions. The alternative approach to this is to use stochastic algorithms but a purely stochastic algorithm would not be of any use as it could take larger amounts of time to find the optimal solution if at all. This is where natural computing algorithms become useful as they are able to utilise randomness while converging on the optimal solution(s).
 
-The paper by Hong Lin and Gengui Zhou \cite[liu2009minimum] proposes a GA approach to the MST problem. In this paper a method for reducing the search space had been implemented by utilising pürfer numbers. A pürfer number is an encoded spanning tree, the relationship between tree and number is a one to one relationship. This means that a pürfer will always correspond to a spanning tree. This is a brilliant idea as it removes the need to sort edges which opens up the possibility of significantly faster algorithms.
+The paper by Hong Lin and Gengui Zhou \cite[liu2009minimum] proposes a GA approach to the MST problem. In this paper a method for reducing the search space had been implemented by utilising p\"urfer numbers. A p\"urfer number is an encoded spanning tree, the relationship between tree and number is a one to one relationship. This means that a p\"urfer number will always correspond to a spanning tree. This is a brilliant idea as it removes the need to sort edges which opens up the possibility of significantly faster algorithms.
 
-However there is a trade off as the pürfer number must be converted into a graph before it is possible to assess the fitness of each spanning tree. The conversion requires iterating through the list of pürfer numbers to compare against the leftmost elements in a list comprised of the vertices that do not appear in the list of pürfer numbers. The second list cannot exceed the number of vertices and some number of vertices must exist within the list of pürfer numbers the assumption will be made that the length is at maximum {$n - 1$}. As the size of a pürfer numbers is {$n - 2$} the time complexity of this will be {$(n - 1) + (n - 2)$}. This leads to a time complexity of ($O (n)$) which means that if an effective technique for converging on the MST is applied it could be possible to find a non-deterministic algorithm which is more efficient \footnote{The time complexity will entirely depend on the technique used to converge on the MST and is likely to be of equal or worse complexity.} than Borůvka’s algorithm \cite[nevsetvril2001otakar].
+However there is a trade off as the p\"urfer number must be converted into a graph before it is possible to assess the fitness of each spanning tree. The conversion requires iterating through the list of p\"urfer numbers to compare against the leftmost elements in a list comprised of the vertices that do not appear in the list of p\"urfer numbers. The second list cannot exceed the number of vertices and some number of vertices must exist within the list of pürfer numbers the assumption will be made that the length is at maximum {$n - 1$}. As the size of a p\"urfer numbers is {$n - 2$} the time complexity of this will be {$(n - 1) + (n - 2)$}. This leads to a time complexity of ($O (n)$) which means that if an effective technique for converging on the MST is applied it could be possible to find a non-deterministic algorithm which is more efficient \footnote{The time complexity will entirely depend on the technique used to converge on the MST and is likely to be of equal or worse complexity.} than Boruvka’s algorithm \cite[nevsetvril2001otakar].
 
 The paper by S. M. Hosseini, A. A. Khaled, M. Jin \cite[hosseini2012solving] on ICA for Euclidean spanning tree. In order to compare the work produced in the paper the Euclidean MST problem will be converted into a MST problem using the following course of logic.
 
@@ -625,24 +627,96 @@ A new global fitness has been calculated for all versions of SDS and Kruskal’s
 H = w(H)
 \end{equation}
 \begin{equation}
-H = w(H)
+F(x) = \frac{H * 100}{G}
 \end{equation}
-\section{Results}
 
+
+\subsection{Results}
+
+This section will present the data gather from testing the SDS methods on each benchmark. Graphs have been constructed to give a visual representation of the convergence of these algorithms. A table for each benchmark has been produced, the findings are presented using the global fitness values .
+
+\begin{table}
+\centering
+\caption{10 Verticex MST}
+\begin{tabular}{l|lllll}
+	   & Best    & Worst    &   Mean  & Median & SD \\ \hline
+SDS 1  & 8.7127 & 28.6777 & 15.5151 & 16.5061 & 5.8357 \\
+SDS 2  & 8.7127 & 26.3134 & 14.8274 & 15.3896 & 5.5623	\\
+SDS 3  & 8.7127 & 25.5691 & 14.8404	& 14.7548 & 5.5969 \\
+Kruskal &8.7127 & 33.4938 & 		&  & \\
+\end{tabular}
+\end{table}
+
+\begin{table}
+\centering
+\caption{20 Verticex MST}
+\begin{tabular}{l|lllll}
+	   & Best    & Worst    &   Mean  & Median & SD \\ \hline
+SDS 1  & 6.2154 & 26.6922 & 13.8273 & 15.9216	 & 6.6259	 \\
+SDS 2  & 6.2154 & 27.0327 & 13.6328	 & 14.4529	 & 6.8562	\\
+SDS 3  & 6.2154 & 28.7356	 & 14.5261	& 17.0498	 & 6.8479 \\
+Kruskal &6.2154 & 33.2481 & 		&  & \\
+\end{tabular}
+\end{table}
+
+\begin{table}
+\centering
+\caption{30 Verticex MST}
+\begin{tabular}{l|lllll}
+	   & Best    & Worst    &   Mean  & Median & SD \\ \hline
+SDS 1  & 1.5844	&  8.2090 & 4.3842  & 5.8027 & 2.5179 \\
+SDS 2  & 1.5212 & 8.2174 & 4.2071 & 5.6152 & 2.5304 \\
+SDS 3  & 1.5212 & 7.90981 & 4.0656	& 3.5756 & 2.4923 \\
+Kruskal &1.5212 & 11.6982 & 		&  & \\
+\end{tabular}
+\end{table}
+
+\begin{table}
+\centering
+\caption{40 Verticex MST}
+\begin{tabular}{l|lllll}
+	 	  & Best    & Worst    &   Mean  & Median & SD \\ \hline
+SDS 1 & 1.2256	 & 5.6444  & 3.0480 & 1.4553 & 1.7944 \\
+SDS 2 & 1.1046	 & 5.6780	& 3.1405 & 4.4635 & 1.8890 \\	
+SDS 3 & 1.1046	 & 5.7676	& 3.1981 & 4.3862 & 1.8882 \\	
+Krushkal      & 1.0598	 & 8.4946 \\
+\end{tabular}
+\end{table}
+
+\begin{table}[]
+\centering
+\caption{50 Verticex MST}
+\begin{tabular}{l|lllll}
+	   & Best    & Worst    &   Mean  & Median & SD \\ \hline
+SDS 1 &  1.0403 & 4.5785	& 2.5420	& 3.4940	& 1.3917 \\
+SDS 2 & 0.8923	 & 4.5699	& 2.3721	& 1.0254	& 1.4800 \\	
+SDS 3 & 0.8923	 & 4.5358	& 2.4153	& 3.3701	& 1.4682 \\	
+Krushkal &	0.7984 &	7.0051 \\
+\end{tabular}
+\end{table}
 
 
 
 \section{Discussion}
 
+The table MST 10 has shown that all three implementations of SDS are able to reach the optimal solution and return a MST. It appears that SDS 3 has the largest standard deviation which means that is has the higher exploration rate of the three algorithms. An effect of this larger exploration rate appears to be that it is more like to find bad results. Another observation is that the only algorithm whose worst result is within 2 standard deviations was the 3rd approach. This is rather significant as there is around a 2\%\ chance per agent to vary this far into bad solutions. The cause is of this is likely the population size as 200 agents is a fair amount.
+
+In the second table the algorithm containing the worst agent has change from SDS 1 to SDS 3. This is interesting as in MST the result was the other way around. This is probably due to the stochastic nature of the algorithm. It should be noted that none of the agents are outside of a standard deviation of two for this test. There does not appear to be any trends in terms of worst, mean, median and standard deviation so far.
+
+MST 30 is where things become more interesting as one of the SDS algorithms failed to converge on the optimal spanning tree. It comes as no surprise that SDS 1 has failed; it consistently has the worst performance of the three algorithms as it is always the last to converge on a solution. In contrast to this both SDS 2 and 3 have reached the solution. Based on the median and standard deviation for this benchmark it would appear that SDS 3 has the highest exploitation out of these approaches. 
+The graphs presented shows an interesting phenomenon in which both SDS 2 and SDS 3 are converging on the optimal solution in the first iterations. This cause of this is unknown and further research should be conducted as this could potentially be the fastest swarm intelligent meta-heuristic. If this property holds with a lower number of agents I could mean that SDS has the potential to be one of the fastest algorithms for finding spanning trees. As for SDS 1 the convergence appears to be similar to the GA for MST.
+One last note that is not related to SDS but more so randomly generated complete graphs is the fact that the larger the graph becomes the smaller the MSP. This trend is appears throughout all or the data presented. 
+
 
 
 \section{Evaluation}
 
-The aim of this project was to determine whether the SDS algorithm would be able to converge on the MST of ant given graph. Overall this project was successful as it has in fact proven that multiple variations of SDS are capable of producing MSTs from a graph. However this has come with a great deal of problems mostly due to the design of the program as sub optimal methods have been used in the implementation of the SDS algorithm. This is the cause of the largest issue of this project, the time taken for the program to run. This has been an important learning curve and has shown the true importance of optimising the time complexity of each algorithm in addition to selecting the correct data structures when implementing these algorithms.
+The implementation of SDS for MST was success and has led to some interesting discoveries. The programme has fulfilled all requirements due to the use of test driven development. However this has come with a great deal of problems mostly due to the design of the program. Sub optimal methods have been used in the implementation of the SDS algorithm. This is the cause of the largest issue of this project, the time taken for the program to run. This has been a difficult learning curve and has shown the true importance of optimising the time complexity of each algorithm in addition to selecting the correct data structures when implementing these algorithms.
 
 
 \section{Conclusion}
 
+The aim of this project was to determine whether the SDS algorithm would be able to converge on the MST of any given graph. Overall this project was successful as it has proven that multiple variations of SDS are capable of producing MSTs from a graph. From the research produced from the implementation of SDS an interesting scenario consistently occurred where SDS 2 and 3 would converge within the first iteration. More research is required to discover the cause of these convergence rates as it could potentially lead to faster solutions for the MST problem.
 
 
 \section{Future Deveolpment}
