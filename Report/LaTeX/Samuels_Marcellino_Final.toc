@@ -11,7 +11,7 @@
 \contentsline {subsubsection}{\numberline {2.5.2}Genetic Algorithm}{3}
 \contentsline {subsubsection}{\numberline {2.5.3}Imperialist Competitive Algorithm}{4}
 \contentsline {subsection}{\numberline {2.6}Summary of Literature}{4}
-\contentsline {section}{\numberline {3}Other Algorithms}{5}
+\contentsline {section}{\numberline {3}Additional Algorithms}{5}
 \contentsline {subsection}{\numberline {3.1}Quicksort}{5}
 \contentsline {subsection}{\numberline {3.2}Depth First Search}{5}
 \contentsline {subsection}{\numberline {3.3}Stochastic Kruskal}{6}
