@@ -10,13 +10,12 @@
 
 \begin{document}
 
-\title{Non-determinist solution for the minimum spanning tree problem using a swarm intelligence meta-heuristic\\
-	\small \LaTeX \hspace{1mm} template adapted from: \\
-European Conference on Artificial Intelligence}
+\title{A Non-Determinist approach the Minimum Spanning Tree Problem}
 
 \author{Marcellino Samuels\institute{Department of Computing, Goldsmiths, University of London, London SE14 6NW, UK., email: msamu001@gold.ac.uk} }
 
 \maketitle
+
 \bibliographystyle{AISB2008}
 
 \begin{abstract}
@@ -52,7 +51,20 @@ The most common algorithmic solutions to the MST problem are deterministic which
 
 This project aims to implement multiple variations of the SDS algorithm to run tests that will be carried out on a set of benchmarking graphs that will become increasingly more complex via the size (see Section and order (see Section \ref{graph}) of the graph. The data produced from these tests will be used to compare and contrast the variations of this algorithm. This will assess the capabilities of SDS for MST using random graph generation and hopefully find the limitations as well as potential areas for improvement.  It will be interesting to see the results and how this algorithm compares to other algorithms such as Kruskal’s \cite[kruskal1956shortest].
 
-ROADMAP OF CONTENT -------------------------------------------------------------------------------------------
+\subsection{Section overview}
+
+\textbf{Chapter 2} will cover important topics and theories related to the MST problem, alongside common algorithmic solutions to the problem. This chapter will review some of the more recent algorithm to find a relevant comparator for the research produced in this dissertation.\\
+\textbf{Chapter 3} looks into the algorithms which will be present in the implementation of this project.\\
+\textbf{Chapter 4} proposes several non-deterministic approaches to solving the MST problem.\\
+\textbf{Chapter 5} covers the requirement and testing for the implementation of the algorithms in chapter 3 and 4.\\
+\textbf{Chapter 6} takes a detail look into the inner working of the implementation of the SDS approach for MST.\\
+\textbf{Chapter 7} breaks down the technique used to test the SDS algorithms.\\
+\textbf{Chapter 8} Reports the finding from the tests carries out in the previous chapter.\\
+\textbf{Chapter 9} will discuss the finding in the previous chapter; this will involve theories about the reason behind the results produced in this dissertation.\\
+\textbf{Chapter 10} takes a critical look at the entirety of the project to evaluate the work produced.\\
+\textbf{Chapter 11} covers the conclusion of this paper along with future work for this project.\\
+
+
 
 \section{Background}
 
@@ -596,7 +608,7 @@ The update() phase method starts by creating a HashSet of all available edges vi
 Now that there is a set of available edges, they can be used to replace an edge in the current agent’s hypothesis.  This is done by selecting an edge randomly, adding it to the hypothesis and checking if it forms a loop using the DFS class. If there is a loop the cycle is returned to the update function as a new HashSet “swapEdge”. Next the random edge that caused the loop is removed swapEdge so it cannot be accidentally removed. From swapEdge a one edge is randomly selected and removed from the agent’s hypothesis, thus leaving the agent’s current hypothesis one edge different to the copied hypothesis. This can be seen as a graph mutation.
 
 
-\subsection{Result Classesl}
+\subsection{Result Classes}
 
 Kruskal’s algorithm is implemented in order used the MST produce to see if SDS does in fact converge on the optimal solution. This implementation used the DFS algorithm to check for loops when building the MST. In order to see the full range of spanning trees an inverted version of Kruskal’s algorithm has been included. This sorts the list in descending order to return the largest or maximum spanning tree.
 
@@ -626,9 +638,20 @@ H = w(H)
 
 \section{Evaluation}
 
+The aim of this project was to determine whether the SDS algorithm would be able to converge on the MST of ant given graph. Overall this project was successful as it has in fact proven that multiple variations of SDS are capable of producing MSTs from a graph. However this has come with a great deal of problems mostly due to the design of the program as sub optimal methods have been used in the implementation of the SDS algorithm. This is the cause of the largest issue of this project, the time taken for the program to run. This has been an important learning curve and has shown the true importance of optimising the time complexity of each algorithm in addition to selecting the correct data structures when implementing these algorithms.
 
 
 \section{Conclusion}
+
+
+
+\section{Future Deveolpment}
+
+One of the major issues in this project is the time it takes to complete a full cycle of SDS on larger graph sizes. For example with the parameters of 200 agents and 500 iterations on a complete graph of 100 nodes the time taken to complete SDS became around 10 minutes. This became exponentially worse for a complete graph of 200 nodes as the time grew to over an hour.
+This issue arose from the time complexity of Kruskal’s and Stochastic Kruskal’s using the DFS algorithm to detect loops. As the DFS algorithm takes place within an iteration of all edge the time complexity rises to {$O (E2)$}. To fix this a dis-jointed data structure will need to be created to replace the DFS algorithm. This will drastically increase the performance as the methods in that will be used from this data structure operate in constant time {$O (1)$}. In addition to this an implicit implementation for the graph would also provide a minor improvement in speed.
+Another solution would be to implement and alternative hypothesis the agent class. An example of this would be to generate a pürfer numbers much like the GA approach. This way each hypothesis would represent a unique spanning tree for the graph which would remove the need to generate random graphs and check for spanning tree or cycles.
+Upon completing these update this project can be used as the gateway into the NP-hard MST problems which are known as the degree constrained MST and capacitated MST.
+
 
 \bibliography{references_NC}
 

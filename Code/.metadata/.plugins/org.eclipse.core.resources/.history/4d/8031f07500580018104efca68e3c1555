@@ -9,11 +9,11 @@ public class Global {
 		double mst, maxST;
 		
 		for(int i = 0; i < 10; i++) {
-			String fileName = "MST 40 ";
+			String fileName = "MST 20 ";
 			String r = "";	// Results
 			String s;	// general purpose
 			
-			EWG graph = genGraph(40);
+			EWG graph = genGraph(10);
 			Kruskal test1 = new Kruskal(graph);
 			SDS test2 = new SDS(graph,200,500,30);
 			
