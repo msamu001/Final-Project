@@ -907,6 +907,110 @@ I have modified the requirements for the EWG to provide a broader test. The requ
 I implemented all the Unit tests for the EWG with the exception of Traversal and Deconstruction which I will complete later today. I have filled out the EWG skeleton class’ methods and have ensured that it passes all tests that have been implemented.
 I have begun researching how to create a Gantt chart and designed SDS for MST.\\
 
+Weekly Report
+
+Supervisor Notes
+Unfortunately I have been unable to meet my supervisor due to the strikes. I have added new objectives and removed complete tasks from the last week
+This week’s checklist should cover the following 2 weeks
+\begin{itemize}
+\item	Designed SDS for MST
+\item	Create Requirements for SDS
+\item Implement Unit tests for SDS
+\item	Implement SDS to pass tests
+\item	Create Requirements for Agent class
+\item	Implement Unit tests for Agent class
+\item	Pass all Unit tests for Agent class
+\item	Create Gantt Chart
+\end{itemize}
+This week’s progress
+I have created the list of requirements for SDS for each phase and split SDS into two main classes Agent and SDS.
+Requirements for SDS Initialization phase:
+\begin{itemize}
+\item	Agents are generated during the initialization phase
+\item	Every agent has a hypothesis after the initialization phase
+Requirements for SDS Test phase:
+\end{itemize}
+\begin{itemize}
+\item	Every Agent’s fitness is calculated
+\item	The total fitness of all agents is equal to 100 
+\item	Agents within the activation threshold become active
+\item	Agents outside of the activation threshold are inactive
+Requirements for SDS Diffusion phase:
+\end{itemize}
+\begin{itemize}
+\item	Every agent checks a random agent’s hypothesis
+\item	Agents copies hypothesis if active agent selected
+\item	Agents generate random hypothesis if inactive agents selected
+\end{itemize}
+Requirements for Agents
+\begin{itemize}
+\item Agents are set to inactive by default
+\item	Able to generate random hypothesis
+\item	Hypotheses are minimum spanning trees
+\item	Hypothesis must be accessible for external classes
+\end{itemize}
+I have not been able to implement the Unit tests for SDS and the SDS class itself. I have been working on the Agent classes and Unit test. I have completed the list of requirements and tests for the Agent class. However, I will need to create a method to randomly generate spanning trees in order to pass the tests.
+I am still researching degree constrained minimum spanning tree papers and the benchmarks used to test them. I believe that it will be possible to modify SDS to cater for these types of spanning trees.\\
+
+
+Weekly Report
+
+Supervisor Notes
+Unfortunately I have been unable to meet my supervisor due to the strikes. I have added new objectives and removed complete tasks from the last week
+This week’s checklist should cover the following 2 weeks
+\begin{itemize}
+\item Implement Unit tests for SDS
+\item	Implement SDS to pass tests
+\item	Create Requirements for DFS class
+\item	Implement Unit tests for DFS class
+\item	Pass all Unit tests for DFS class
+\item	Pass all Unit tests for Agent class
+\item	Create Gantt Chart
+\end{itemize}
+This week’s progress
+I have created the list of requirements for the DFS class that is used to check if a graph has cycles as well as if the graph is a spanning tree.
+Requirements for DFS
+\begin{itemize}
+\item	Able to identify cycles in graph
+\item	Able to identify spanning trees
+\item	Traversal is Depth First Search
+\end{itemize}
+I have not been able to implement the Unit tests for SDS and the SDS class itself. I have designed how each phase of SDS will work and the class is ready to be created once the Unit tests have been implemented and have created the skeleton class for SDS. Each phase is private to incorporate encapsulation. However, this makes testing each phase difficult as variables cannot be accessed by the test class.
+This weeks’ time has been devoted to developing a method to generate random spanning trees using any given EWG. To accomplish this I have used a method similar to Krushkal’s algorithm. However I needed a method to detect if a EWG has a cycle and if it is a spanning tree. A Depth First Search traversal class has been created to accomplish these tasks.
+I have completed the list of requirements and tests for the DFS class which means the implementation of the class has been completed. Using the DFS class the test for the Agent have now been passed thus completing the Agent class implementation\\
+
+Weekly Report
+
+Supervisor Notes
+Unfortunately I have been unable to meet my supervisor due to the strikes. I have added new objectives and removed complete tasks from the last week
+This week’s checklist should cover the following 2 weeks
+\begin{itemize}
+\item	Implement Unit tests for SDS
+\item	Implement SDS to pass tests
+\item	Implement quicksort for agents
+\item	Create Gantt Chart
+\end{itemize}
+This week’s progress
+The program is nearing completion which will allow for benchmarking tests to be carried out.
+Unfortunately I have been unable to make any real progress this week due to a multitude of problems. The first one was how to test each step at the appropriate stage during SDS. This arose due to the design of SDS which meant that the original skeleton had to be redesigned. This then lead to the problem of running each phase method from the unit testing class as each phase method is private to incorporate encapsulation.
+I am still trying to find solutions to these problems in order to create the unit test correctly and implement SDS. Until then all efforts will be focused on this issue as no progress can be made until this has been corrected.
+Following the design of SDS a sorting algorithm would be required during the initialisation phase. I chose to use quicksort and have implemented a version that is specialised to sort agents.\\
+
+
+Weekly Report
+
+Supervisor Notes
+Unfortunately I have been unable to meet my supervisor due to the strikes. I have added new objectives and removed complete tasks from the last week
+This week’s checklist should cover the following 2 weeks
+\begin{itemize}
+\item	Implement Unit tests for SDS
+\item	Implement SDS to pass tests
+\item	Create Gantt Chart
+\end{itemize}
+This week’s progress
+After taking some time off to reflect on the project I was able to find a solution to last week’s unit test issue and continue with the project. However this has drastically pushed back the schedule which will affect the first draft of the report. On the positive side I have been able to implement SDS and will now be moving onto the first set of testing benchmarks. I believe that I will not be able to complete all tests before the draft submission deadline so I will have to concentrate on the other aspects of the report and comeback to this as future goals. Overall I believe the project is still on course to finish early as projected.
+I have now created a Gantt chart that shows all the progress from the creation of the git repository and has projections up till the end of the project.\\
+
 
 
 \subsection Preliminary report
