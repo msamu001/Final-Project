@@ -33,7 +33,7 @@ this paper.
 
 \tableofcontents
 
-\section{Introcution}
+\section{Introduction}
 
 
 This project originated from the desire to create an optimal network of nodes within a massive multi-player online game. Each node has been assigned a value that represents the cost to connect the node to the player’s network. Players are given a finite number of points to create their network. Nodes fall into 3 categories:
@@ -638,6 +638,12 @@ F(x) = \frac{H * 100}{G}
 
 This section will present the data gather from testing the SDS methods on each benchmark. Graphs have been constructed to give a visual representation of the convergence of these algorithms. A table for each benchmark has been produced, the findings are presented using the global fitness values .
 
+\begin{figure}
+\centerline{\includegraphics[height=2.5in]{10MSTA1.png}}
+\caption{SDS 1 on 10 Vertices MST
+processes } \label{SDS1 G10}
+\end{figure}
+
 \begin{table}
 \centering
 \caption{10 Verticex MST}
@@ -707,7 +713,8 @@ The table MST 10 has shown that all three implementations of SDS are able to rea
 In the second table the algorithm containing the worst agent has change from SDS 1 to SDS 3. This is interesting as in MST the result was the other way around. This is probably due to the stochastic nature of the algorithm. It should be noted that none of the agents are outside of a standard deviation of two for this test. There does not appear to be any trends in terms of worst, mean, median and standard deviation so far.
 
 MST 30 is where things become more interesting as one of the SDS algorithms failed to converge on the optimal spanning tree. It comes as no surprise that SDS 1 has failed; it consistently has the worst performance of the three algorithms as it is always the last to converge on a solution. In contrast to this both SDS 2 and 3 have reached the solution. Based on the median and standard deviation for this benchmark it would appear that SDS 3 has the highest exploitation out of these approaches. 
-The graphs presented shows an interesting phenomenon in which both SDS 2 and SDS 3 are converging on the optimal solution in the first iterations. This cause of this is unknown and further research should be conducted as this could potentially be the fastest swarm intelligent meta-heuristic. If this property holds with a lower number of agents I could mean that SDS has the potential to be one of the fastest algorithms for finding spanning trees. As for SDS 1 the convergence appears to be similar to the GA for MST.
+
+The graphs presented show an interesting phenomenon in which both SDS 2 and SDS 3 are converging on the optimal solution in the first iterations. This cause of this is unknown and further research should be conducted as this could potentially be the fastest swarm intelligent meta-heuristic. If this property holds with a lower number of agents I could mean that SDS has the potential to be one of the fastest algorithms for finding spanning trees. As for SDS 1 the convergence appears to be similar to the GA for MST.
 One last note that is not related to SDS but more so randomly generated complete graphs is the fact that the larger the graph becomes the smaller the MSP. This trend is appears throughout all or the data presented. 
 
 
